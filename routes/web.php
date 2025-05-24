@@ -5,10 +5,9 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrivacyController;
+use App\Http\Controllers\WelcomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index']);
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Display all blogs

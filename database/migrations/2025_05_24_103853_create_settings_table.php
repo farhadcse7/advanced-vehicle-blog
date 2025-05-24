@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->text('address')->nullable();
             $table->text('copyright')->nullable();
+            $table->string('map_url')->nullable();
             $table->string('fb')->nullable();
             $table->string('insta')->nullable();
             $table->string('twitter')->nullable();
