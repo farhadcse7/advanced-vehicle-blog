@@ -3,7 +3,7 @@
      <div class="container">
          <nav class="navbar navbar-expand-lg p-0">
              <div class="container-fluid">
-                 <a class="navbar-brand" href="index.html">
+                 <a class="navbar-brand" href="{{ url('/') }}">
                      <img src="assets/images/logo2.png" class="img-fluid" alt="Blog">
                  </a>
                  <div class="d-flex align-items-center d-block d-lg-none">
@@ -17,13 +17,13 @@
                  <div class="collapse navbar-collapse" id="navbarNav">
                      <ul class="navbar-nav ms-auto d-flex align-items-center">
                          <li class="nav-item">
-                             <a class="nav-link active" href="index.html">Home</a>
+                             <a class="nav-link active" href="{{ url('/') }}">Home</a>
                          </li>
                          <li class="nav-item">
-                             <a class="nav-link" href="blog.html">Blog</a>
+                             <a class="nav-link" href="{{ route('blogs.index') }}">Blog</a>
                          </li>
                          <li class="nav-item me-3">
-                             <a class="nav-link" href="contact.html">Contact</a>
+                             <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
                          </li>
                          <li class="nav-item">
                              <!-- Search Form -->

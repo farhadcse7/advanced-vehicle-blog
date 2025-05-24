@@ -106,13 +106,9 @@
         </div>
 
         <!-- banner advertisement end -->
-        <!-- ======================= Blog Start  ============================ -->
-        <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
-            <div class="container">
-                @yield('content')
-            </div>
-        </div>
-        <!-- ======================= Blog End  ============================ -->
+        <!-- ======================= Blog/Contact Start  ============================ -->
+        @yield('content')
+        <!-- ======================= Blog/Contact End  ============================ -->
 
         @include('layouts.partials.footer')
 
