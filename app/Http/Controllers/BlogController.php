@@ -25,11 +25,12 @@ class BlogController extends Controller
     //     Blog::create($request->all()); // Store the blog
     //     return redirect()->route('blogs.index')->with('success', 'Blog created successfully.'); // Redirect with success message
     // }
-    // public function show($id)
-    // {
-    //     $blog = Blog::findOrFail($id); // Fetch blog by id
-    //     return view('blogs.show', compact('blog')); // Return view with the blog
-    // }
+    public function show($slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail(); // Fetch post by slug
+        return view('blogs.show', compact('post')); // Return single blog post
+    }
+
     // public function edit($id)
     // {
     //     $blog = Blog::findOrFail($id); // Fetch blog by id

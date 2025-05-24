@@ -65,7 +65,7 @@
                                     <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
                                         <div class="blog_img mb-4 position-relative">
                                             <a href="details.html">
-                                                <img class="img-fluid rounded z-3" src="{{ asset($post->img) }}"
+                                                <img class="img-fluid rounded z-3" src="{{ asset('assets/images/blog/'.$post->img) }}"
                                                     alt="{{ $post->img }}">
                                             </a>
                                         </div>
@@ -107,7 +107,7 @@
                                         </div>
                                         <hr>
                                         <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                                            <a class="learn_more" href="details.html">Read More</a>
+                                            <a class="learn_more" href="{{ route('blog.show',$post->slug) }}">Read More</a>
                                         </div>
                                     </div>
                                 </div>

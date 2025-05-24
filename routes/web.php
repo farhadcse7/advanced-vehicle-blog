@@ -11,6 +11,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Display all blogs
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show'); // Display a single blog
 
 // Route::get('/blogs/create', [BlogController::class, 'create'])->name('blogs.create'); // Show create form
 // Route::post('/blogs', [BlogController::class, 'store'])->name('blogs.store'); // Store new blog
