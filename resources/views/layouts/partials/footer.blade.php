@@ -86,9 +86,9 @@
                             </div>
                             <div class="links">
                                 <ul>
-                                    <li><a href="index.html">Blog</a></li>
-                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                    <li><a href="terms-condition.html">Terms Conditions</a></li>
+                                    <li><a href="{{ route('blogs.index') }}">Blog</a></li>
+                                    <li><a href="{{ route('privacy.index') }}">Privacy Policy</a></li>
+                                    <li><a href="{{ route('terms.index') }}">Terms Conditions</a></li>
                                 </ul>
                             </div>
                         </div>

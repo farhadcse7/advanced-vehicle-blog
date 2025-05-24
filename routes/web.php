@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\TermsController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PrivacyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,5 +20,7 @@ Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // 
 // Route::put('/blogs/{id}', [BlogController::class, 'update'])->name('blogs.update'); // Update blog
 // Route::delete('/blogs/{id}', [BlogController::class, 'destroy'])->name('blogs.destroy'); // Delete blog
 
-// Contact routes
-Route::get('/contact', [ContactController::class, 'index'])->name('contact.index'); // Display all contacts
+// Pages routes
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy.index');
+Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');

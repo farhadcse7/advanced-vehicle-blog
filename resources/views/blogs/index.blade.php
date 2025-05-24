@@ -1,6 +1,18 @@
 @extends('layouts.app')
 @section('title', 'Blog')
 @section('content')
+    <!-- ======================= breadcrumb Start  ============================ -->
+    <div class="breadcrumb_sec py-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Blog</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- ======================= breadcrumb End  ============================ -->
     <!-- ======================= Blog Start  ============================ -->
     <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
         <div class="container">

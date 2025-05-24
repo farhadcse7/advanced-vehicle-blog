@@ -1,6 +1,19 @@
 @extends('layouts.app')
 @section('title', 'Contact')
 @section('content')
+    <!-- ======================= breadcrumb Start  ============================ -->
+    <div class="breadcrumb_sec py-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active">Contact Us</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- ======================= breadcrumb End  ============================ -->
+
     <!-- ======================= Contact Start  ============================ -->
     <div class="contact_section pb-5 overflow-hidden">
         <div class="container">

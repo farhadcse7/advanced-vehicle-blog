@@ -106,9 +106,9 @@
         </div>
 
         <!-- banner advertisement end -->
-        <!-- ======================= Blog/Contact Start  ============================ -->
+        <!-- ======================= Section content Start  ============================ -->
         @yield('content')
-        <!-- ======================= Blog/Contact End  ============================ -->
+        <!-- ======================= Section content End  ============================ -->
 
         @include('layouts.partials.footer')
 
