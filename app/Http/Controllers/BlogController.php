@@ -11,7 +11,9 @@ class BlogController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('blogs.index', compact('posts'));
+        $categories = Category::all();
+        $latestPosts = Post::latest()->limit(5)->get();
+        return view('blogs.index', compact('posts', 'categories', 'latestPosts'));
     }
     // public function create()
     // {

@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PrivacyController extends Controller
 {
     public function index()
     {
-        return view('pages.privacy');
+        $content = DB::table('privacies')->first();
+        $latestPosts = Post::latest()->limit(5)->get();
+        return view('pages.privacy', compact('content', 'latestPosts'));
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -10,6 +11,8 @@ class WelcomeController extends Controller
     public function index()
     {
         $posts = Post::latest()->get();
-        return view('welcome', compact('posts'));
+        $categories = Category::all();
+        $latestPosts = Post::latest()->limit(5)->get();
+        return view('welcome', compact('posts', 'categories', 'latestPosts'));
     }
 }

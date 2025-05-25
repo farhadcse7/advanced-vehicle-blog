@@ -100,9 +100,12 @@
                             </div>
                             <div class="links">
                                 <ul>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="">ECU Remaping of Toyota</a></li>
+                                    @foreach ($latestPosts as $latestPost)
+                                        <li><a
+                                                href="{{ route('blog.show', $latestPost->slug) }}">{{ $latestPost->title }}</a>
+                                        </li>
+                                    @endforeach
+
                                 </ul>
                             </div>
                         </div>

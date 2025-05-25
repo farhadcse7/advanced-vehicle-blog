@@ -18,42 +18,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-xl-3 order-xl-2">
-                    <div class="blog_sidebar">
-                        <div class="p-3 p-xl-4 border rounded">
-                            <div class="card_header mb-4">
-                                <h3>Categories</h3>
-                            </div>
-                            <div class="categories_list">
-                                <ul>
-                                    <li><a href="#">Technology</a></li>
-                                    <li><a href="#">Health & Wellness</a></li>
-                                    <li><a href="#">Travel</a></li>
-                                    <li><a href="#">Food & Recipes</a></li>
-                                    <li><a href="#">Lifestyle</a></li>
-                                    <li><a href="#">Finance</a></li>
-                                    <li><a href="#">Education</a></li>
-                                    <li><a href="#">Entertainment</a></li>
-                                    <li><a href="#">Sports</a></li>
-                                    <li><a href="#">Fashion</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="p-3 p-xl-4 border rounded mt-2">
-                            <div class="card_header mb-4">
-                                <h3>Latest Posts</h3>
-                            </div>
-                            <div class="latestpost_list">
-                                <ul>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="#">ECU Remaping of Toyota</a></li>
-                                    <li><a href="#">BMW car price updated 2024</a></li>
-                                    <li><a href="#">BMW ECU Cloning</a></li>
-                                    <li><a href="#">ECU Remaping of Toyota</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    @include('layouts.partials.sidebar')
                 </div>
                 <div class="col-xl-9 order-xl-1">
                     <div class="blog_wrapper">
@@ -65,7 +30,8 @@
                                     <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
                                         <div class="blog_img mb-4 position-relative">
                                             <a href="details.html">
-                                                <img class="img-fluid rounded z-3" src="{{ asset('assets/images/blog/'.$post->img) }}"
+                                                <img class="img-fluid rounded z-3"
+                                                    src="{{ asset('assets/images/blog/' . $post->img) }}"
                                                     alt="{{ $post->img }}">
                                             </a>
                                         </div>
@@ -74,7 +40,8 @@
                                                 <div class="mb-2 mb-sm-0 me-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="icon me-1">
-                                                            <img src="assets/images/tag.svg" alt="Tag">
+                                                            <img src="{{ asset('/') }}assets/images/tag.svg"
+                                                                alt="Tag">
                                                         </div>
                                                         <div class="date"><span>{{ $post->category->title }}</span></div>
                                                     </div>
@@ -82,7 +49,8 @@
                                                 <div class="mb-2 mb-sm-0 me-3">
                                                     <div class="d-flex align-items-center">
                                                         <div class="icon me-1">
-                                                            <img src="assets/images/calendar.svg" alt="Date">
+                                                            <img src="{{ asset('/') }}assets/images/calendar.svg"
+                                                                alt="Date">
                                                         </div>
                                                         <div class="date">
                                                             <span>{{ $post->created_at->format('d M, Y') }}</span>
@@ -92,7 +60,8 @@
                                                 <div class="">
                                                     <div class="d-flex align-items-center">
                                                         <div class="icon me-1">
-                                                            <img src="assets/images/eye.svg" alt="View">
+                                                            <img src="{{ asset('/') }}assets/images/eye.svg"
+                                                                alt="View">
                                                         </div>
                                                         <div class="date"><span>{{ $post->views }}</span></div>
                                                     </div>
@@ -107,7 +76,7 @@
                                         </div>
                                         <hr>
                                         <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                                            <a class="learn_more" href="{{ route('blog.show',$post->slug) }}">Read More</a>
+                                            <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read More</a>
                                         </div>
                                     </div>
                                 </div>

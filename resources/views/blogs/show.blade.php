@@ -7,7 +7,7 @@
             <nav>
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Blog</li>
+                    <li class="breadcrumb-item active">{{ $post->title }}</li>
                 </ol>
             </nav>
         </div>
@@ -18,34 +18,7 @@
         <div class="container">
             <div class="row g-4">
                 <div class="col-xl-3 order-xl-2">
-                    <div class="blog_sidebar">
-                        <div class="p-3 p-xl-4 border rounded">
-                            <div class="card_header mb-4">
-                                <h3>Categories</h3>
-                            </div>
-                            <div class="categories_list">
-                                <ul>
-                                    @foreach ($categories as $category)
-                                        <li><a href="#">{{ $category->title }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="p-3 p-xl-4 border rounded mt-2">
-                            <div class="card_header mb-4">
-                                <h3>Latest Posts</h3>
-                            </div>
-                            <div class="latestpost_list">
-                                <ul>
-                                    @foreach ($latestPosts as $latestPost)
-                                        <li><a
-                                                href="{{ route('blog.show', $latestPost->slug) }}">{{ $latestPost->title }}</a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    @include('layouts.partials.sidebar')
                 </div>
                 <div class="col-xl-9 order-xl-1">
                     <div class="single_post blog_wrapper border p-3 p-xl-4 rounded">
@@ -104,8 +77,8 @@
                     <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
                         <div class="blog_img mb-4 position-relative">
                             <a href="details.html">
-                                <img class="img-fluid rounded z-3" src="{{ asset('assets/images/blog/'.$relatedPost->img) }}"
-                                    alt="Health & Wellness">
+                                <img class="img-fluid rounded z-3"
+                                    src="{{ asset('assets/images/blog/' . $relatedPost->img) }}" alt="Health & Wellness">
                             </a>
                         </div>
                         <div class="short_info d-sm-flex align-items-center mb-3">
