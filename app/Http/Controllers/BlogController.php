@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,10 @@ class BlogController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail(); // Fetch post by slug
-        return view('blogs.show', compact('post')); // Return single blog post
+        $categories = Category::all();
+        $latestPosts = Post::latest()->limit(5)->get();
+        $relatedPosts = Post::where('category_id', $post->category_id)->where('id', '!=', $post->id)->latest()->limit(3)->get();
+        return view('blogs.show', compact('post', 'categories', 'latestPosts', 'relatedPosts'));
     }
 
     // public function edit($id)

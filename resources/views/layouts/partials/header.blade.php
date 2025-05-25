@@ -4,7 +4,7 @@
          <nav class="navbar navbar-expand-lg p-0">
              <div class="container-fluid">
                  <a class="navbar-brand" href="{{ url('/') }}">
-                     <img src="assets/images/logo2.png" class="img-fluid" alt="Blog">
+                     <img src="{{ asset('/') }}assets/images/logo2.png" class="img-fluid" alt="Blog">
                  </a>
                  <div class="d-flex align-items-center d-block d-lg-none">
                      <div class="me-2">
@@ -44,7 +44,7 @@
              aria-labelledby="mobilemenuOffcanvasLabel">
              <div class="offcanvas-header">
                  <div class="offcanvas-title" id="mobilemenuOffcanvasLabel">
-                     <img src="assets/images/logo2.png" width="120" class="img-fluid" alt="Blog">
+                     <img src="{{ asset('/') }}assets/images/logo2.png" width="120" class="img-fluid" alt="Blog">
                  </div>
                  <button type="button" class="btn-close shadow-none opacity-100" data-bs-dismiss="offcanvas"
                      aria-label="Close"></button>

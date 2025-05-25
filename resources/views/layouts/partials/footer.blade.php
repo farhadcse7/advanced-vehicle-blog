@@ -17,7 +17,7 @@
                                 placeholder="Enter your email address" required="">
                             <button type="submit" class="input-group-text bg-primary border-primary text-white">
                                 Subscribe
-                                <img src="assets/images/icons/subscribe.svg" alt="Subscribe">
+                                <img src="{{ asset('/') }}assets/images/icons/subscribe.svg" alt="Subscribe">
                             </button>
                         </div>
                     </form>
@@ -37,7 +37,7 @@
                             <div class="mb-4">
                                 <div class="site_info d-flex align-items-center mb-4">
                                     <div class="me-2">
-                                        <img src="assets/images/icons/phone.svg" alt="For Support">
+                                        <img src="{{ asset('/') }}assets/images/icons/phone.svg" alt="For Support">
                                     </div>
                                     <div>
                                         <h5>For Support</h5>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="site_info d-flex align-items-center mb-4">
                                     <div class="me-2">
-                                        <img src="assets/images/icons/email.svg" alt="Send Us Email">
+                                        <img src="{{ asset('/') }}assets/images/icons/email.svg" alt="Send Us Email">
                                     </div>
                                     <div>
                                         <h5>Send Us Email</h5>
