@@ -11,7 +11,13 @@
                     </div>
                 </div>
                 <div class="newsletter-form">
-                    <form action="#" method="post">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('subscribe') }}" method="post">
+                        @csrf
                         <div class="input-group">
                             <input name="email" type="email" class="form-control shadow-none"
                                 placeholder="Enter your email address" required="">
@@ -21,6 +27,15 @@
                             </button>
                         </div>
                     </form>
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-2">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
