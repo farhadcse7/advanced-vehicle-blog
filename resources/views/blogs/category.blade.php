@@ -29,7 +29,7 @@
                                 <div class="col-md-6">
                                     <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
                                         <div class="blog_img mb-4 position-relative">
-                                            <a href="details.html">
+                                            <a href="{{ route('blog.show', $post->slug) }}">
                                                 <img class="img-fluid rounded z-3"
                                                     src="{{ asset('assets/images/blog/' . $post->img) }}"
                                                     alt="{{ $post->img }}">
@@ -68,7 +68,7 @@
                                                 </div>
                                             </div>
                                             <h3 class="mb-3">
-                                                <a href="details.html">{{ $post->title }}</a>
+                                                <a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                                             </h3>
                                             <div class="blog_desc mb-2">
                                                 {{ Str::limit($post->description, 100, '...') }}

@@ -23,5 +23,6 @@ Route::post('/subscriber', [SubscriptionController::class, 'subscribe'])->name('
 
 // Pages routes
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/savecontact', [ContactController::class, 'store'])->name('savecontact');
 Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy.index');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
