@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Home')
+@section('title', getSiteSettings()->meta_title ?: 'meta_title')
+@section('description', getSiteSettings()->meta_desc ?: 'meta_desc')
+@section('keywords', getSiteSettings()->meta_keywords ?: 'meta_keywords')
 @section('content')
     <!-- ======================= Blog Start  ============================ -->
     <div class="blog_section bg-white overflow-hidden pt-4 pb-4">

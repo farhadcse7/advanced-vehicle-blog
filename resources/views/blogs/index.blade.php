@@ -1,5 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Blog')
+@section('title', getSiteSettings()->blog_meta_title ?: 'blog_meta_title')
+@section('description', getSiteSettings()->blog_meta_desc ?: 'blog_meta_desc')
+@section('keywords', getSiteSettings()->blog_meta_keywords ?: 'blog_meta_keywords')
 @section('content')
     <!-- ======================= breadcrumb Start  ============================ -->
     <div class="breadcrumb_sec py-3">

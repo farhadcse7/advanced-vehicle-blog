@@ -28,6 +28,12 @@ return new class extends Migration
             $table->string('meta_title')->nullable();
             $table->text('meta_desc')->nullable();
             $table->text('meta_keywords')->nullable();
+            $table->string('blog_meta_title')->nullable();
+            $table->text('blog_meta_desc')->nullable();
+            $table->text('blog_meta_keywords')->nullable();
+            $table->string('contact_meta_title')->nullable();
+            $table->text('contact_meta_desc')->nullable();
+            $table->text('contact_meta_keywords')->nullable();
             $table->timestamps();
         });
     }

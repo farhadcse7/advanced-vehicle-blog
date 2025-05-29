@@ -18,13 +18,16 @@
                  <div class="collapse navbar-collapse" id="navbarNav">
                      <ul class="navbar-nav ms-auto d-flex align-items-center">
                          <li class="nav-item">
-                             <a class="nav-link active" href="{{ url('/') }}">Home</a>
+                             <a class="nav-link {{ request()->is('/') ? 'active' : '' }}"
+                                 href="{{ url('/') }}">Home</a>
                          </li>
                          <li class="nav-item">
-                             <a class="nav-link" href="{{ route('blogs.index') }}">Blog</a>
+                             <a class="nav-link {{ request()->routeIs('blogs.index') ? 'active' : '' }}"
+                                 href="{{ route('blogs.index') }}">Blog</a>
                          </li>
                          <li class="nav-item me-3">
-                             <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
+                             <a class="nav-link {{ request()->routeIs('contact.index') ? 'active' : '' }}"
+                                 href="{{ route('contact.index') }}">Contact</a>
                          </li>
                          <li class="nav-item">
                              <!-- Search Form -->
