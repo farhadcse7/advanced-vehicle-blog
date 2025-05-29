@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Blog')
+@section('title', 'Posts by Search')
 @section('content')
     <!-- ======================= breadcrumb Start  ============================ -->
     <div class="breadcrumb_sec py-3">
@@ -7,7 +7,7 @@
             <nav>
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active">Blog</li>
+                    <li class="breadcrumb-item active">Search Result</li>
                 </ol>
             </nav>
         </div>
@@ -76,19 +76,17 @@
                                         </div>
                                         <hr>
                                         <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                                            <a class="{{ route('blog.show', $post->slug) }}"
-                                                href="{{ route('blog.show', $post->slug) }}">Read More</a>
+                                            <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
+                            <!-- pagination -->
+                            <div class="pagination mt-5 mb-2 d-flex justify-content-center">
+                                {{ $posts->appends(request()->query())->links('pagination::bootstrap-5') }}
+                            </div>
                         </div>
-                    </div>
-
-                    <!-- pagination -->
-                    <div class="pagination mt-5 mb-2 d-flex justify-content-center">
-                        {{ $posts->links('pagination::bootstrap-5') }}
                     </div>
 
                 </div>

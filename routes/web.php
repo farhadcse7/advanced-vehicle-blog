@@ -14,6 +14,7 @@ Route::get('/', [WelcomeController::class, 'index']);
 // Blog routes
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index'); // Display all blogs
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show'); // Display a single blog
+Route::get('/search', [BlogController::class, 'search'])->name('search');
 
 // Category routes
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('category.show'); // Display posts in a category

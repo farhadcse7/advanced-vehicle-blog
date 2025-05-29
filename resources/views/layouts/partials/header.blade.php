@@ -4,7 +4,8 @@
          <nav class="navbar navbar-expand-lg p-0">
              <div class="container-fluid">
                  <a class="navbar-brand" href="{{ url('/') }}">
-                     <img src="{{ asset('/') }}assets/images/{{ getSiteSettings()->logo }}" class="img-fluid" alt="Blog">
+                     <img src="{{ asset('/') }}assets/images/{{ getSiteSettings()->logo }}" class="img-fluid"
+                         alt="Blog">
                  </a>
                  <div class="d-flex align-items-center d-block d-lg-none">
                      <div class="me-2">
@@ -27,7 +28,7 @@
                          </li>
                          <li class="nav-item">
                              <!-- Search Form -->
-                             <form class="d-flex" action="/search" method="GET">
+                             <form class="d-flex" action="{{ route('search') }}" method="GET">
                                  <input class="form-control me-2" type="search" placeholder="Search"
                                      aria-label="Search" name="query">
                                  <button class="btn btn-outline-success" type="submit">Search</button>
@@ -44,7 +45,8 @@
              aria-labelledby="mobilemenuOffcanvasLabel">
              <div class="offcanvas-header">
                  <div class="offcanvas-title" id="mobilemenuOffcanvasLabel">
-                     <img src="{{ asset('/') }}assets/images/logo2.png" width="120" class="img-fluid" alt="Blog">
+                     <img src="{{ asset('/') }}assets/images/logo2.png" width="120" class="img-fluid"
+                         alt="Blog">
                  </div>
                  <button type="button" class="btn-close shadow-none opacity-100" data-bs-dismiss="offcanvas"
                      aria-label="Close"></button>

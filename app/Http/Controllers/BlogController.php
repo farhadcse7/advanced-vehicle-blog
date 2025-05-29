@@ -10,15 +10,28 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(4);
         $categories = Category::all();
         $latestPosts = Post::latest()->limit(5)->get();
         return view('blogs.index', compact('posts', 'categories', 'latestPosts'));
     }
-    // public function create()
-    // {
-    //     return view('blogs.create'); // Return create blog form
-    // }
+
+
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'query' => 'required|string|max:255',
+        ]);
+        $query = $request->input('query');
+        $posts = Post::where('title', 'like', "%{$query}%")
+            ->orWhere('description', 'like', "%{$query}%")
+            ->paginate(2);
+        $categories = Category::all();
+        $latestPosts = Post::latest()->limit(5)->get();
+        return view('blogs.search', compact('posts', 'categories', 'latestPosts'));
+    }
+
     // public function store(Request $request)
     // {
     //     $request->validate([
