@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\TermsController;
@@ -27,3 +28,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::post('/savecontact', [ContactController::class, 'store'])->name('savecontact');
 Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy.index');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
