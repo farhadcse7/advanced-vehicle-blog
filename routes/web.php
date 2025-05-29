@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrivacyController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\SubscriptionController;
 
 Route::get('/', [WelcomeController::class, 'index']);
@@ -29,6 +30,7 @@ Route::post('/savecontact', [ContactController::class, 'store'])->name('savecont
 Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy.index');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
 
-Auth::routes();
+// Admin routes
+Auth::routes(); //auth routes from laravel/ui
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
