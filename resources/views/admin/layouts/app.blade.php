@@ -1,80 +1,113 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+
+<html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vehicle Blog Admin Panel</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link rel="stylesheet" href="{{ asset('/') }}adminassets/plugins/fontawesome-free/css/all.min.css">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('/') }}adminassets/dist/css/adminlte.min.css?v=3.2.0">
+    <script nonce="fe6b7882-a8eb-4866-8ab2-e43ba24520d6">
+        try {
+            (function(w, d) {
+                ! function(c, d, e, f) {
+                    if (c.zaraz) console.error("zaraz is loaded twice");
+                    else {
+                        c[e] = c[e] || {};
+                        c[e].executed = [];
+                        c.zaraz = {
+                            deferred: [],
+                            listeners: []
+                        };
+                        c.zaraz._v = "5714";
+                        c.zaraz.q = [];
+                        c.zaraz._f = function(g) {
+                            return async function() {
+                                var h = Array.prototype.slice.call(arguments);
+                                c.zaraz.q.push({
+                                    m: g,
+                                    a: h
+                                })
+                            }
+                        };
+                        for (const i of ["track", "set", "debug"]) c.zaraz[i] = c.zaraz._f(i);
+                        c.zaraz.init = () => {
+                            var j = d.getElementsByTagName(f)[0],
+                                k = d.createElement(f),
+                                l = d.getElementsByTagName("title")[0];
+                            l && (c[e].t = d.getElementsByTagName("title")[0].text);
+                            c[e].x = Math.random();
+                            c[e].w = c.screen.width;
+                            c[e].h = c.screen.height;
+                            c[e].j = c.innerHeight;
+                            c[e].e = c.innerWidth;
+                            c[e].l = c.location.href;
+                            c[e].r = d.referrer;
+                            c[e].k = c.screen.colorDepth;
+                            c[e].n = d.characterSet;
+                            c[e].o = (new Date).getTimezoneOffset();
+                            if (c.dataLayer)
+                                for (const p of Object.entries(Object.entries(dataLayer).reduce(((q, r) => ({
+                                        ...q[1],
+                                        ...r[1]
+                                    })), {}))) zaraz.set(p[0], p[1], {
+                                    scope: "page"
+                                });
+                            c[e].q = [];
+                            for (; c.zaraz.q.length;) {
+                                const s = c.zaraz.q.shift();
+                                c[e].q.push(s)
+                            }
+                            k.defer = !0;
+                            for (const t of [localStorage, sessionStorage]) Object.keys(t || {}).filter((v => v
+                                .startsWith("_zaraz_"))).forEach((u => {
+                                try {
+                                    c[e]["z_" + u.slice(7)] = JSON.parse(t.getItem(u))
+                                } catch {
+                                    c[e]["z_" + u.slice(7)] = t.getItem(u)
+                                }
+                            }));
+                            k.referrerPolicy = "origin";
+                            k.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(c[e])));
+                            j.parentNode.insertBefore(k, j)
+                        };
+                        ["complete", "interactive"].includes(d.readyState) ? zaraz.init() : c.addEventListener(
+                            "DOMContentLoaded", zaraz.init)
+                    }
+                }(w, d, "zarazData", "script");
+            })(window, document)
+        } catch (e) {
+            throw fetch("/cdn-cgi/zaraz/t"), e;
+        };
+    </script>
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+        <!-- Favicon -->
+        @include('admin.layouts.partials.header')
+        @include('admin.layouts.partials.sidebar')
+        <div class="content-wrapper">
             @yield('content')
-        </main>
+        </div>
+        {{-- <aside class="control-sidebar control-sidebar-dark">
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside> --}}
+        @include('admin.layouts.partials.footer')
     </div>
+    <script src="{{ asset('/') }}adminassets/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('/') }}adminassets/plugins/fontawesome-free/js/font-awesome.min.js"></script>
+    <script src="{{ asset('/') }}adminassets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('/') }}adminassets/dist/js/adminlte.min.js?v=3.2.0"></script>
 </body>
+
 </html>
