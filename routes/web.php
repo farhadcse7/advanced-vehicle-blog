@@ -10,6 +10,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\Admin\AdminBlogsController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
@@ -34,3 +35,5 @@ Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
 Auth::routes(); //auth routes from laravel/ui
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin-blogs', [AdminBlogsController::class, 'index'])->name('admin.blogs.index');
+Route::get('/admin-blog-create', [AdminBlogsController::class, 'create'])->name('admin.blog.create');

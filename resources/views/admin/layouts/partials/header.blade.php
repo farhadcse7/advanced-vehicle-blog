@@ -2,7 +2,7 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="#" style="text-decoration: underline;">
+            <a class="nav-link" href="{{ url('/') }}" style="text-decoration: underline;">
                 Visit Website
             </a>
         </li>
