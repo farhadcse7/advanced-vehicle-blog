@@ -106,7 +106,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="setting.html" class="nav-link">
+                    <a href="{{ route('admin.settings.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Web Setting

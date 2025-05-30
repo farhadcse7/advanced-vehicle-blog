@@ -13,6 +13,8 @@ use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Admin\AdminBlogsController;
 use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AdminPrivacyController;
+use App\Http\Controllers\Admin\AdminProfileController;
+use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
 
 Route::get('/', [WelcomeController::class, 'index']);
@@ -38,11 +40,13 @@ Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
 Auth::routes(); //auth routes from laravel/ui
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/admin-blogs', [AdminBlogsController::class, 'index'])->name('admin.blogs.index');
-Route::get('/admin-blog-create', [AdminBlogsController::class, 'create'])->name('admin.blog.create');
-Route::get('/admin-categories', [AdminCategoriesController::class, 'index'])->name('admin.categories.index');
-Route::get('/admin-category-create', [AdminCategoriesController::class, 'create'])->name('admin.category.create');
-Route::get('/admin-pages-privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
-Route::get('/admin-pages-terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');
+Route::get('/admin/blogs', [AdminBlogsController::class, 'index'])->name('admin.blogs.index');
+Route::get('/admin/blog/create', [AdminBlogsController::class, 'create'])->name('admin.blog.create');
+Route::get('/admin/categories', [AdminCategoriesController::class, 'index'])->name('admin.categories.index');
+Route::get('/admin/category/create', [AdminCategoriesController::class, 'create'])->name('admin.category.create');
+Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
+Route::get('/admin/pages/terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');
+Route::get('/admin/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
+Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
 
 

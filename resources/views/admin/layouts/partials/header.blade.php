@@ -7,7 +7,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="profile/update.html">
+            <a class="nav-link" href="{{ route('admin.profile.index') }}">
                 <i class="far fa-user"></i>
             </a>
         </li>
