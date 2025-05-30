@@ -46,13 +46,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="category/index.html" class="nav-link">
+                            <a href="{{ route('admin.categories.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Category List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="category/create.html" class="nav-link">
+                            <a href="{{ route('admin.category.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Category</p>
                             </a>
@@ -69,13 +69,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/index.html" class="nav-link">
+                            <a href="{{ route('admin.pages.privacy') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Privacy Policy</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/create.html" class="nav-link ">
+                            <a href="{{ route('admin.pages.terms') }}" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Terms & Conditions</p>
                             </a>
