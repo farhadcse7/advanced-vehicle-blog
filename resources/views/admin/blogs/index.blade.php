@@ -46,158 +46,26 @@
                                 </thead>
                                 <tbody>
                                     <!-- Demo data rows -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Post Title 1</td>
-                                        <td>Category 1</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 1</td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Post Title 2</td>
-                                        <td>Category 2</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 2</td>
-                                        <td>2024-07-02</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Post Title 3</td>
-                                        <td>Category 3</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 3</td>
-                                        <td>2024-07-03</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Post Title 4</td>
-                                        <td>Category 4</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 4</td>
-                                        <td>2024-07-04</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>Post Title 5</td>
-                                        <td>Category 5</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 5</td>
-                                        <td>2024-07-05</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Post Title 6</td>
-                                        <td>Category 6</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 6</td>
-                                        <td>2024-07-06</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Post Title 7</td>
-                                        <td>Category 7</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 7</td>
-                                        <td>2024-07-07</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Post Title 8</td>
-                                        <td>Category 8</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 8</td>
-                                        <td>2024-07-08</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>Post Title 9</td>
-                                        <td>Category 9</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 9</td>
-                                        <td>2024-07-09</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>Post Title 10</td>
-                                        <td>Category 10</td>
-                                        <td>description</td>
-                                        <td><img src="../assets/images/logo2.png" width="50" height="50"
-                                                alt="img"></td>
-                                        <td>Author 10</td>
-                                        <td>2024-07-10</td>
-                                        <td>
-                                            <a href="#" class="btn btn-primary btn-sm">View</a>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                    @foreach ($posts as $post)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $post->title }}</td>
+                                            <td>{{ $post->category->title }}</td>
+                                            <td>{{ Str::limit($post->description, 50) }}</td>
+                                            <td><img src="{{ asset('assets/images/blog/' . $post->img) }}" width="50"
+                                                    height="50" alt="img"></td>
+                                            <td>{{ $post->user->name }}</td>
+                                            <td>{{ $post->created_at->format('d M, Y') }}</td>
+                                            <td>
+                                                <a href="{{ route('admin.blog.show', $post->id) }}"
+                                                    class="btn btn-primary btn-sm">View</a>
+                                                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
 
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>ID</th>

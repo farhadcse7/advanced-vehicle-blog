@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('img')->nullable();
             $table->text('description')->nullable();
+            // $table->foreignId('user_id')->constrained()->onDelete('cascade'); //when user deleted, all related posts will be deleted
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null'); //when need to keep data even user deleted
             $table->foreignId('category_id')->nullable()->constrained()->onDelete('set null');
             $table->integer('views')->default(0);
             $table->string('meta_title')->nullable();
