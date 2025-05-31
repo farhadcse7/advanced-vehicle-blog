@@ -49,8 +49,10 @@
                             </div>
                         @endif
                         <!-- form start -->
-                        <form action="" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.blog.update', $post->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="postTitle">Post Title <span class="text-danger">*</span></label>
@@ -144,7 +146,7 @@
                             <!-- /.card-body -->
 
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                         </form>
