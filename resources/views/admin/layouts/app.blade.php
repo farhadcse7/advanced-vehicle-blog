@@ -86,6 +86,7 @@
             throw fetch("/cdn-cgi/zaraz/t"), e;
         };
     </script>
+    @stack('ckstyle')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -108,6 +109,7 @@
     <script src="{{ asset('/') }}adminassets/plugins/fontawesome-free/js/font-awesome.min.js"></script>
     <script src="{{ asset('/') }}adminassets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('/') }}adminassets/dist/js/adminlte.min.js?v=3.2.0"></script>
+    @stack('scripts')
 </body>
 
 </html>

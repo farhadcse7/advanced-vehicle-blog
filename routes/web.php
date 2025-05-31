@@ -43,6 +43,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/admin/blogs', [AdminBlogsController::class, 'index'])->name('admin.blogs.index');
 Route::get('/admin/blog/create', [AdminBlogsController::class, 'create'])->name('admin.blog.create');
+Route::post('/admin/blog/store', [AdminBlogsController::class, 'store'])->name('admin.blog.store');
 Route::get('/admin/blog/show/{id}', [AdminBlogsController::class, 'show'])->name('admin.blog.show');
 
 Route::get('/admin/categories', [AdminCategoriesController::class, 'index'])->name('admin.categories.index');

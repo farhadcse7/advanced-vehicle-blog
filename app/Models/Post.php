@@ -12,13 +12,8 @@ class Post extends Model
     protected $fillable = [
         'title',
         'slug',
-        'img',
         'description',
         'category_id',
-        'views',
-        'meta_title',
-        'meta_desc',
-        'meta_keywords',
     ];
     // Optional
     protected $table = 'posts';

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,7 +33,9 @@ class AdminBlogsController extends Controller
 
     public function create()
     {
-        return view('admin.blogs.create');
+        $categories = Category::all();
+        $users = User::all();
+        return view('admin.blogs.create', compact('categories', 'users'));
     }
 
     public function show($id)
@@ -39,5 +43,52 @@ class AdminBlogsController extends Controller
         //dd($id);
         $post = Post::findOrFail($id);
         return view('admin.blogs.show', compact('post'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:posts,slug',
+            'category_id' => 'required|exists:categories,id',
+            'user_id' => 'required|exists:users,id',
+            'description' => 'required|string',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_desc' => 'nullable|string',
+            'meta_keywords' => 'nullable|string',
+        ]);
+
+        try {
+            $post = new Post();
+            $post->title = $request->title;
+            $post->slug = $request->slug;
+            $post->category_id = $request->category_id;
+            $post->user_id = $request->user_id;
+            $post->description = $request->description;
+            $post->title = $request->title;
+            $post->title = $request->title;
+
+            if ($request->hasFile('img')) {
+                $filename = uniqid() . '_' . $request->file('img')->getClientOriginalName();
+                $path = 'assets/images/blog/';
+                $post->img = $request->file('img')->storeAs($path, $filename, 'public');
+            }
+
+            $post->meta_title = $request->meta_title;
+            $post->meta_desc = $request->meta_desc;
+            $post->meta_keywords = $request->meta_keywords;
+            $post->save();
+            return redirect()->route('admin.blog.create')->with('success', 'Blog post created successfully!');
+        } catch (\Exception $e) {
+            // dd($e);
+            \Log::error('Error creating blog post:' . $e->getMessage());
+            return redirect()->route('admin.blog.create')->with('error', 'There was an error creating the blog post.');
+        }
+
+        $categories = Category::all();
+        $users = User::all();
+        return view('admin.blogs.create', compact('categories', 'users'));
     }
 }
