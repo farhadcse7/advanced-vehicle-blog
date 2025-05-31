@@ -59,7 +59,8 @@
                                             <td>
                                                 <a href="{{ route('admin.blog.show', $post->id) }}"
                                                     class="btn btn-primary btn-sm">View</a>
-                                                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                                                <a href="{{ route('admin.blog.edit', $post->id) }}"
+                                                    class="btn btn-info btn-sm">Edit</a>
                                                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
 
                                             </td>

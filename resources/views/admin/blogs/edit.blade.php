@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title', 'Create Post')
+@section('title', 'Update Post')
 @push('css')
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Create Post</h1>
+                    <h1 class="m-0">Update Post</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -30,7 +30,7 @@
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New Post</h3>
+                            <h3 class="card-title">Update Post</h3>
                         </div>
                         <!-- /.card-header -->
                         @if (session('success'))
@@ -49,13 +49,13 @@
                             </div>
                         @endif
                         <!-- form start -->
-                        <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="postTitle">Post Title <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="postTitle" name="title"
-                                        value="{{ old('title') }}" placeholder="Enter post title">
+                                        value="{{ old('title', $post->title) }}" placeholder="Enter post title">
                                     {{-- single error - use input field name --}}
                                     @error('title')
                                         <span class="text-danger">{{ $message }}</span>
@@ -64,8 +64,8 @@
 
                                 <div class="form-group">
                                     <label for="postSlug">Post Slug <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="postSlug" name="slug"
-                                        value="{{ old('slug') }}" placeholder="Enter post slug">
+                                    <input readonly type="text" class="form-control" id="postSlug" name="slug"
+                                        value="{{ old('slug', $post->slug) }}" placeholder="Enter post slug">
                                 </div>
 
                                 <div class="form-group">
@@ -73,7 +73,7 @@
                                     <select class="form-control" id="postCategory" name="category_id">
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}"
-                                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
                                                 {{ $category->title }}
                                             </option>
                                         @endforeach
@@ -85,7 +85,7 @@
                                     <select class="form-control" id="postAuthor" name="user_id">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}"
-                                                {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                {{ old('user_id', $post->user_id) == $user->id ? 'selected' : '' }}>
                                                 {{ $user->name }}
                                             </option>
                                         @endforeach
@@ -94,7 +94,7 @@
 
                                 <div class="form-group">
                                     <label for="desc">Description <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="desc" name="description" rows="5" placeholder="Enter post desc">{{ old('description') }}</textarea>
+                                    <textarea class="form-control" id="desc" name="description" rows="5" placeholder="Enter post desc">{{ old('description', $post->description) }}</textarea>
                                 </div>
 
                                 <div class="form-group">
@@ -105,18 +105,22 @@
                                             <label class="custom-file-label" for="postImage">Choose file</label>
                                         </div>
                                     </div>
+                                    @if ($post->img)
+                                        <img src="{{ asset('assets/images/blog/' . $post->img) }}" width="100"
+                                            height="100" alt="Post Image">
+                                    @endif
                                 </div>
 
                                 <div class="form-group">
                                     <label for="metaTitle">Meta Title (Maximum 60 characters)</label>
                                     <input type="text" class="form-control" id="metaTitle" name="meta_title"
-                                        value="{{ old('meta_title') }}" placeholder="Enter meta title">
+                                        value="{{ old('meta_title', $post->meta_title) }}" placeholder="Enter meta title">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="metaDescription">Meta Description (Maximum 160 characters)</label>
                                     <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
-                                        placeholder="Enter meta description">{{ old('meta_desc') }}</textarea>
+                                        placeholder="Enter meta description">{{ old('meta_desc', $post->meta_desc) }}</textarea>
                                 </div>
                                 {{-- <div class="form-group">
                                     <label for="postTags">Keywords</label>
@@ -128,8 +132,8 @@
                                     <label for="meta_keywords">Keywords</label>
                                     <select id="meta_keywords" name="meta_keywords[]" class="form-control"
                                         multiple="multiple">
-                                        @if (old('meta_keywords'))
-                                            @foreach (explode(',', old('meta_keywords')) as $keyword)
+                                        @if (old('meta_keywords', $post->meta_keywords))
+                                            @foreach (explode(',', old('meta_keywords', $post->meta_keywords)) as $keyword)
                                                 <option value="{{ $keyword }}" selected>{{ $keyword }}</option>
                                             @endforeach
                                         @endif
@@ -160,11 +164,11 @@
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Page specific script -->
-    <script>
+    {{-- <script>
         $(function() {
             let table = new DataTable('#postlist');
         });
-    </script>
+    </script> --}}
     <script>
         // Custom plugin (for example purposes, not adding functionality here)
         function CustomizationPlugin(editor) {}
@@ -206,7 +210,7 @@
             });
     </script>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             // Function to create a slug from the title
             function slugify(text) {
@@ -225,7 +229,7 @@
                 $('#postSlug').val(slug);
             });
         });
-    </script>
+    </script> --}}
 
     <script>
         $(document).ready(function() {

@@ -46,6 +46,14 @@ class AdminBlogsController extends Controller
         return view('admin.blogs.show', compact('post'));
     }
 
+    public function edit($id)
+    {
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        $users = User::all();
+        return view('admin.blogs.edit', compact('post', 'categories', 'users'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
