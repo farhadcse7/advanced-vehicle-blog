@@ -9,10 +9,10 @@
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-
+    @stack('css')
     <link rel="stylesheet" href="{{ asset('/') }}adminassets/plugins/fontawesome-free/css/all.min.css">
-
     <link rel="stylesheet" href="{{ asset('/') }}adminassets/dist/css/adminlte.min.css?v=3.2.0">
+    @stack('ckstyle')
     <script nonce="fe6b7882-a8eb-4866-8ab2-e43ba24520d6">
         try {
             (function(w, d) {
@@ -86,7 +86,7 @@
             throw fetch("/cdn-cgi/zaraz/t"), e;
         };
     </script>
-    @stack('ckstyle')
+
 </head>
 
 <body class="hold-transition sidebar-mini">

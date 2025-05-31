@@ -58,7 +58,7 @@
                             <h1>{{ $post->title }}</h1>
                         </div>
                         <div class="desc">
-                            {{ $post->description }}
+                            {!! $post->description !!}
                         </div>
                     </div>
                 </div>

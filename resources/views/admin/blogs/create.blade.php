@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 @section('title', 'Create Post')
+@push('css')
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -51,37 +55,50 @@
                                 <div class="form-group">
                                     <label for="postTitle">Post Title <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="postTitle" name="title"
-                                        placeholder="Enter post title">
+                                        value="{{ old('title') }}" placeholder="Enter post title">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="postSlug">Post Slug <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="postSlug" name="slug"
-                                        placeholder="Enter post title">
+                                        value="{{ old('slug') }}" placeholder="Enter post slug">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="postCategory">Category <span class="text-danger">*</span></label>
                                     <select class="form-control" id="postCategory" name="category_id">
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                            <option value="{{ $category->id }}"
+                                                {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->title }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="postAuthor">Author <span class="text-danger">*</span></label>
                                     <select class="form-control" id="postAuthor" name="user_id">
                                         @foreach ($users as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                            <option value="{{ $user->id }}"
+                                                {{ old('user_id') == $user->id ? 'selected' : '' }}>
+                                                {{ $user->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="desc">Description <span class="text-danger">*</span></label>
-                                    <textarea class="form-control" id="desc" name="description" rows="5" placeholder="Enter post desc"></textarea>
+                                    <textarea class="form-control" id="desc" name="description" rows="5" placeholder="Enter post desc">{{ old('description') }}</textarea>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="postDate">Date</label>
-                                    <input type="date" class="form-control" id="postDate">
+                                    <input type="date" class="form-control" id="postDate" name="date"
+                                        value="{{ old('date') }}">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="postImage">Post Image</label>
                                     <div class="input-group">
@@ -91,21 +108,36 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="metaTitle">Meta Title (Maximum 60 characters)</label>
                                     <input type="text" class="form-control" id="metaTitle" name="meta_title"
-                                        placeholder="Enter meta title">
+                                        value="{{ old('meta_title') }}" placeholder="Enter meta title">
                                 </div>
+
                                 <div class="form-group">
                                     <label for="metaDescription">Meta Description (Maximum 160 characters)</label>
                                     <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
-                                        placeholder="Enter meta description"></textarea>
+                                        placeholder="Enter meta description">{{ old('meta_desc') }}</textarea>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="postTags">Keywords</label>
                                     <input type="text" class="form-control" id="postTags" name="meta_keywords"
                                         placeholder="Enter tags separated by commas">
+                                </div> --}}
+
+                                <div class="form-group">
+                                    <label for="meta_keywords">Keywords</label>
+                                    <select id="meta_keywords" name="meta_keywords[]" class="form-control"
+                                        multiple="multiple">
+                                        @if (old('meta_keywords'))
+                                            @foreach (explode(',', old('meta_keywords')) as $keyword)
+                                                <option value="{{ $keyword }}" selected>{{ $keyword }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 </div>
+
                             </div>
                             <!-- /.card-body -->
 
@@ -127,6 +159,8 @@
     <!-- Include CKEditor 5 from CDN -->
     <script src="https://cdn.ckeditor.com/ckeditor5/37.1.0/classic/ckeditor.js"></script>
     <script src="https://unpkg.com/@ckeditor/ckeditor5-inspector@4.1.0/build/inspector.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function() {
@@ -191,6 +225,17 @@
                 var title = $(this).val();
                 var slug = slugify(title);
                 $('#postSlug').val(slug);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#meta_keywords').select2({
+                tags: true,
+                tokenSeparators: [','], // Press comma to separate tags
+                placeholder: "Enter keywords separated by commas",
+                width: '100%'
             });
         });
     </script>
