@@ -67,7 +67,8 @@
                                                 <a href="{{ route('admin.blog.edit', $post->id) }}"
                                                     class="btn btn-info btn-sm">Edit</a>
                                                 <a onclick="return confirm('Are you really sure to delete ?')"
-                                                    href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                    href="{{ route('admin.blog.delete', $post->id) }}"
+                                                    class="btn btn-danger btn-sm">Delete</a>
 
                                             </td>
                                         </tr>

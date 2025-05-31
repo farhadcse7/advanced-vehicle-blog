@@ -181,4 +181,25 @@ class AdminBlogsController extends Controller
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog post updated successfully!');
     }
+
+    public function delete($id)
+    {
+        try {
+            $post = Post::findOrFail($id);
+
+            if ($post->img) {
+                $imagePath = public_path('assets/images/blog/' . $post->img);
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
+                }
+            }
+
+            $post->delete();
+
+            return redirect()->route('admin.blogs.index')->with('success', 'Blog post deleted successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error deleting blog post: ' . $e->getMessage());
+            return redirect()->route('admin.blogs.index')->with('error', 'There was an error deleting the blog post.');
+        }
+    }
 }

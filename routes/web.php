@@ -45,6 +45,7 @@ Route::get('/admin/blogs', [AdminBlogsController::class, 'index'])->name('admin.
 Route::get('/admin/blog/create', [AdminBlogsController::class, 'create'])->name('admin.blog.create');
 Route::get('/admin/blog/edit/{id}', [AdminBlogsController::class, 'edit'])->name('admin.blog.edit');
 Route::put('/admin/blog/update/{id}', [AdminBlogsController::class, 'update'])->name('admin.blog.update');
+Route::get('/admin/blog/delete/{id}', [AdminBlogsController::class, 'delete'])->name('admin.blog.delete');
 Route::post('/admin/blog/store', [AdminBlogsController::class, 'store'])->name('admin.blog.store');
 Route::get('/admin/blog/show/{id}', [AdminBlogsController::class, 'show'])->name('admin.blog.show');
 
