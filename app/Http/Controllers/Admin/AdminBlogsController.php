@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class AdminBlogsController extends Controller
 {
@@ -50,20 +51,27 @@ class AdminBlogsController extends Controller
         $request->validate([
 
             'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:posts,slug',
+            'slug' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
             'description' => 'required|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_desc' => 'nullable|string',
+            'meta_title' => 'nullable|string|max:60',
+            'meta_desc' => 'nullable|string|max:160',
             'meta_keywords' => 'nullable|string',
         ]);
 
         try {
             $post = new Post();
             $post->title = $request->title;
-            $post->slug = $request->slug;
+
+            $slugUniqueCheck = Post::where('slug', $request->slug)->count();
+            if ($slugUniqueCheck > 0) {
+                $post->slug = $request->slug . '-' . uniqid();
+            } else {
+                $post->slug = $request->slug;
+            }
+
             $post->category_id = $request->category_id;
             $post->user_id = $request->user_id;
             $post->description = $request->description;
@@ -72,8 +80,18 @@ class AdminBlogsController extends Controller
 
             if ($request->hasFile('img')) {
                 $filename = uniqid() . '_' . $request->file('img')->getClientOriginalName();
-                $path = 'assets/images/blog/';
-                $post->img = $request->file('img')->storeAs($path, $filename, 'public');
+
+                $destinationPath = public_path('assets/images/blog/');
+
+                if (!File::exists($destinationPath)) {
+                    File::makeDirectory($destinationPath, 0755, true);
+                }
+
+                if ($request->file('img')->move($destinationPath, $filename)) {
+                    $post->img = $filename;
+                } else {
+                    return response()->json(['error' => 'File upload failed'], 500);
+                }
             }
 
             $post->meta_title = $request->meta_title;

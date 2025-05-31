@@ -49,17 +49,17 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="postTitle">Post Title</label>
+                                    <label for="postTitle">Post Title <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="postTitle" name="title"
                                         placeholder="Enter post title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="postSlug">Post Title</label>
+                                    <label for="postSlug">Post Slug <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" id="postSlug" name="slug"
                                         placeholder="Enter post title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="postCategory">Category</label>
+                                    <label for="postCategory">Category <span class="text-danger">*</span></label>
                                     <select class="form-control" id="postCategory" name="category_id">
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->title }}</option>
@@ -67,7 +67,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="postAuthor">Author</label>
+                                    <label for="postAuthor">Author <span class="text-danger">*</span></label>
                                     <select class="form-control" id="postAuthor" name="user_id">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->id }}">{{ $user->name }}</option>
@@ -75,7 +75,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="desc">Description</label>
+                                    <label for="desc">Description <span class="text-danger">*</span></label>
                                     <textarea class="form-control" id="desc" name="description" rows="5" placeholder="Enter post desc"></textarea>
                                 </div>
                                 <div class="form-group">
@@ -92,12 +92,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="metaTitle">Meta Title</label>
+                                    <label for="metaTitle">Meta Title (Maximum 60 characters)</label>
                                     <input type="text" class="form-control" id="metaTitle" name="meta_title"
                                         placeholder="Enter meta title">
                                 </div>
                                 <div class="form-group">
-                                    <label for="metaDescription">Meta Description</label>
+                                    <label for="metaDescription">Meta Description (Maximum 160 characters)</label>
                                     <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
                                         placeholder="Enter meta description"></textarea>
                                 </div>
@@ -172,6 +172,27 @@
             .catch(error => {
                 console.error(error);
             });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Function to create a slug from the title
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-') // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+                    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+                    .replace(/^-+/, '') // Trim - from start of text
+                    .replace(/-+$/, ''); // Trim - from end of text
+            }
+
+            // Automatically fill the slug field based on the title
+            $('#postTitle').on('input', function() {
+                var title = $(this).val();
+                var slug = slugify(title);
+                $('#postSlug').val(slug);
+            });
+        });
     </script>
 @endpush
 
