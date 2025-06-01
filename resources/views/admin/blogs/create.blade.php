@@ -3,6 +3,21 @@
 @push('css')
     <!-- Select2 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        //select 2 styles
+        select2-selection__rendered:empty {
+            display: none !important;
+        }
+
+        li.select2-selection__choice {
+            padding: 3px 11px !important;
+        }
+
+        button.select2-selection__choice__remove {
+            padding: 3px 2px !important;
+            margin: 0px 0px !important;
+        }
+    </style>
 @endpush
 @section('content')
     <!-- Content Header (Page header) -->
@@ -118,7 +133,7 @@
                                     <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
                                         placeholder="Enter meta description">{{ old('meta_desc') }}</textarea>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label for="meta_keywords">Keywords</label>
                                     <select id="meta_keywords" name="meta_keywords[]" class="form-control"
@@ -236,20 +251,6 @@
 
 @push('ckstyle')
     <style>
-        //select 2 styles
-        select2-selection__rendered:empty {
-            display: none !important;
-        }
-
-        li.select2-selection__choice {
-            padding: 3px 11px !important;
-        }
-
-        button.select2-selection__choice__remove {
-            padding: 3px 2px !important;
-            margin: 0px 0px !important;
-        }
-
         // CKEditor styles
         .ck-editor__editable_inline {
             min-height: 200px;

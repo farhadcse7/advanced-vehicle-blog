@@ -58,6 +58,8 @@ Route::put('/admin/category/update/{id}', [AdminCategoriesController::class, 'up
 Route::get('/admin/category/delete/{id}', [AdminCategoriesController::class, 'delete'])->name('admin.category.delete');
 
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
+Route::put('/admin/pages/privacy/{id}', [AdminPrivacyController::class, 'update'])->name('admin.privacy.update');
 Route::get('/admin/pages/terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');
+Route::put('/admin/pages/terms/{id}', [AdminTermsController::class, 'update'])->name('admin.terms.update');
 Route::get('/admin/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
 Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
