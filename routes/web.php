@@ -51,6 +51,7 @@ Route::get('/admin/blog/show/{id}', [AdminBlogsController::class, 'show'])->name
 
 Route::get('/admin/categories', [AdminCategoriesController::class, 'index'])->name('admin.categories.index');
 Route::get('/admin/category/create', [AdminCategoriesController::class, 'create'])->name('admin.category.create');
+Route::get('/admin/category/show/{id}', [AdminCategoriesController::class, 'show'])->name('admin.category.show');
 
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
 Route::get('/admin/pages/terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');

@@ -13,29 +13,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Blog
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('admin.blogs.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Post List</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.blog.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add New Post</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -55,6 +32,29 @@
                             <a href="{{ route('admin.category.create') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Category</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Blog
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.blogs.index') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Post List</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.blog.create') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add New Post</p>
                             </a>
                         </li>
                     </ul>
