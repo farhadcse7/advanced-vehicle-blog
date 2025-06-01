@@ -48,9 +48,26 @@
                             <h3 class="card-title">General Settings</h3>
                         </div>
                         <!-- /.card-header -->
+                        @if (session('success'))
+                            <div class="alert alert-success m-2">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger m-2">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <!-- form start -->
-                        <form method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.settings.update', $data->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
                                 <div class="row">
                                     {{-- Logo --}}
@@ -146,8 +163,14 @@
                                         <div class="form-group">
                                             <label for="meta_keywords">Meta Keywords</label>
                                             <select id="meta_keywords" name="meta_keywords[]" class="form-control"
-                                                multiple>
-                                                @foreach (explode(',', old('meta_keywords', $data->meta_keywords)) as $keyword)
+                                                multiple="multiple">
+                                                @php
+                                                    $keywords = old(
+                                                        'meta_keywords',
+                                                        explode(',', $data->meta_keywords),
+                                                    );
+                                                @endphp
+                                                @foreach ($keywords as $keyword)
                                                     <option value="{{ $keyword }}" selected>{{ $keyword }}
                                                     </option>
                                                 @endforeach
@@ -178,8 +201,14 @@
                                         <div class="form-group">
                                             <label for="blog_meta_keywords">Blog Meta Keywords</label>
                                             <select id="blog_meta_keywords" name="blog_meta_keywords[]"
-                                                class="form-control" multiple>
-                                                @foreach (explode(',', old('blog_meta_keywords', $data->blog_meta_keywords)) as $keyword)
+                                                class="form-control" multiple="multiple">
+                                                @php
+                                                    $keywords = old(
+                                                        'blog_meta_keywords',
+                                                        explode(',', $data->blog_meta_keywords),
+                                                    );
+                                                @endphp
+                                                @foreach ($keywords as $keyword)
                                                     <option value="{{ $keyword }}" selected>{{ $keyword }}
                                                     </option>
                                                 @endforeach
@@ -209,8 +238,14 @@
                                         <div class="form-group">
                                             <label for="contact_meta_keywords">Contact Meta Keywords</label>
                                             <select id="contact_meta_keywords" name="contact_meta_keywords[]"
-                                                class="form-control" multiple>
-                                                @foreach (explode(',', old('contact_meta_keywords', $data->contact_meta_keywords)) as $keyword)
+                                                class="form-control" multiple="multiple">
+                                                @php
+                                                    $keywords = old(
+                                                        'contact_meta_keywords',
+                                                        explode(',', $data->contact_meta_keywords),
+                                                    );
+                                                @endphp
+                                                @foreach ($keywords as $keyword)
                                                     <option value="{{ $keyword }}" selected>{{ $keyword }}
                                                     </option>
                                                 @endforeach
