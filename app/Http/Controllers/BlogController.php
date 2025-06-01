@@ -35,6 +35,7 @@ class BlogController extends Controller
     public function show($slug)
     {
         $post = Post::where('status', 1)->where('slug', $slug)->firstOrFail(); // Fetch post by slug
+        $post->increment('views'); // Increment view count
         $categories = Category::all();
         $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         $relatedPosts = Post::where('status', 1)->where('category_id', $post->category_id)->where('id', '!=', $post->id)->latest()->limit(3)->get();

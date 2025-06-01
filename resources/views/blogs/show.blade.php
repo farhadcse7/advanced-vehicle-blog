@@ -61,6 +61,13 @@
                             {!! $post->description !!}
                         </div>
                     </div>
+
+                    {{-- disqus comment --}}
+                    <div id="disqus_thread" class="mt-5"></div>
+
+                    {{-- share this plugin --}}
+                    <div class="sharethis-sticky-share-buttons"></div>
+
                 </div>
             </div>
         </div>
@@ -114,7 +121,7 @@
                                 <a href="{{ route('blog.show', $relatedPost->slug) }}">{{ $relatedPost->title }}</a>
                             </h3>
                             <div class="blog_desc mb-2">
-                                {{ $relatedPost->description }}
+                                {!! $relatedPost->description !!}
                             </div>
                         </div>
                         <hr>
@@ -128,3 +135,31 @@
     </div>
     <!-- ======================= Related Post End  ============================ -->
 @endsection
+
+@push('scripts')
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement('script');
+            s.src = 'https://https-github-com-csly2023.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+
+    {{-- share this plugin  --}}
+    <script type='text/javascript'
+        src='https://platform-api.sharethis.com/js/sharethis.js#property=683cd19798608700128ca0ad&product=sticky-share-buttons'
+        async='async'></script>
+@endpush

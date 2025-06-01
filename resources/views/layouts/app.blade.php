@@ -129,6 +129,7 @@
         <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        @stack('scripts')
 
 </body>
 
