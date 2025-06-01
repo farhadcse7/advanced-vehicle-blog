@@ -140,13 +140,6 @@ class AdminBlogsController extends Controller
         $post = Post::findOrFail($id);
         $post->title = $request->title;
 
-        // $slugUniqueCheck = Post::where('slug', $request->slug)->where('id', '<>', $id)->count();
-        // if ($slugUniqueCheck > 0) {
-        //     $post->slug = $request->slug . '-' . uniqid();
-        // } else {
-        //     $post->slug = $request->slug;
-        // }
-
         $post->category_id = $request->category_id;
         $post->user_id = $request->user_id;
         $post->description = $request->description;

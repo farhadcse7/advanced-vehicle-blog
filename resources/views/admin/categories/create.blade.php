@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 @section('title', 'Create Category')
+@push('css')
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -18,7 +22,21 @@
         </div>
     </div>
     <!-- /.content-header -->
+    @if (session('success'))
+        <div class="alert alert-success m-2">
+            {{ session('success') }}
+        </div>
+    @endif
 
+    @if ($errors->any())
+        <div class="alert alert-danger m-2">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
@@ -31,12 +49,48 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="categoryName">Category Name</label>
-                                    <input type="text" class="form-control" id="categoryName"
+                                    <label for="categoryName">Category Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="categoryName" name="categoryName"
                                         placeholder="Enter category name">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="categorySlug">Category Slug <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="categorySlug" name="categorySlug"
+                                        placeholder="Enter category name">
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="metaTitle">Meta Title (Maximum 60 characters)</label>
+                                    <input type="text" class="form-control" id="metaTitle" name="meta_title"
+                                        value="{{ old('meta_title') }}" placeholder="Enter meta title">
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="metaDescription">Meta Description (Maximum 160 characters)</label>
+                                    <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
+                                        placeholder="Enter meta description">{{ old('meta_desc') }}</textarea>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="meta_keywords">Keywords</label>
+                                    <select id="meta_keywords" name="meta_keywords[]" class="form-control"
+                                        multiple="multiple">
+                                        @if (old('meta_keywords'))
+                                            @foreach (explode(',', old('meta_keywords')) as $keyword)
+                                                <option value="{{ $keyword }}" selected>{{ $keyword }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -66,3 +120,59 @@
         });
     </script>
 @endsection
+
+@push('scripts')
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Function to create a slug from the title
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-') // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+                    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+                    .replace(/^-+/, '') // Trim - from start of text
+                    .replace(/-+$/, ''); // Trim - from end of text
+            }
+
+            // Automatically fill the slug field based on the title
+            $('#categoryName').on('input', function() {
+                var title = $(this).val();
+                var slug = slugify(title);
+                $('#categorySlug').val(slug);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#meta_keywords').select2({
+                tags: true,
+                tokenSeparators: [','], // Press comma to separate tags
+                placeholder: "Enter keywords separated by commas",
+                width: '100%'
+            });
+        });
+    </script>
+@endpush
+
+@push('ckstyle')
+    <style>
+        //select 2 styles
+        select2-selection__rendered:empty {
+            display: none !important;
+        }
+
+        li.select2-selection__choice {
+            padding: 3px 11px !important;
+        }
+
+        button.select2-selection__choice__remove {
+            padding: 3px 2px !important;
+            margin: 0px 0px !important;
+        }
+    </style>
+@endpush

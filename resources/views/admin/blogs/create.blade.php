@@ -118,12 +118,7 @@
                                     <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
                                         placeholder="Enter meta description">{{ old('meta_desc') }}</textarea>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label for="postTags">Keywords</label>
-                                    <input type="text" class="form-control" id="postTags" name="meta_keywords"
-                                        placeholder="Enter tags separated by commas">
-                                </div> --}}
-
+                                
                                 <div class="form-group">
                                     <label for="meta_keywords">Keywords</label>
                                     <select id="meta_keywords" name="meta_keywords[]" class="form-control"
