@@ -18,6 +18,11 @@
         </div>
     </div>
     <!-- /.content-header -->
+    @if (session('success'))
+        <div class="alert alert-success m-2">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <!-- Main content -->
     <div class="content">
@@ -52,8 +57,11 @@
                                             <td>
                                                 <a href="{{ route('admin.category.show', $category->id) }}"
                                                     class="btn btn-primary btn-sm">View</a>
-                                                <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="{{ route('admin.category.edit', $category->id) }}"
+                                                    class="btn btn-info btn-sm">Edit</a>
+                                                <a onclick="return confirm('Are you really sure to delete ?')"
+                                                    href="{{ route('admin.category.delete', $category->id) }}"
+                                                    class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                             </td>
                                         </tr>

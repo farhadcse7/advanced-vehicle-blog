@@ -35,6 +35,13 @@ class AdminCategoriesController extends Controller
         return view('admin.categories.show', compact('category'));
     }
 
+    public function edit($id)
+    {
+        $title = 'Category Edit';
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category', 'title'));
+    }
+
     public function create()
     {
         return view('admin.categories.create');
@@ -78,8 +85,40 @@ class AdminCategoriesController extends Controller
             \Log::error('Error creating Category:' . $e->getMessage());
             return redirect()->route('admin.category.create')->with('error', 'There was an error creating the Category.');
         }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'categoryName' => 'required|string|max:255',
+            'categorySlug' => 'required|string|max:255',
+            'meta_title' => 'nullable|string|max:60',
+            'meta_desc' => 'nullable|string|max:160',
+            'meta_keywords' => 'nullable|array',
+        ]);
 
 
-        return view('admin.blogs.create', compact('categories', 'users'));
+        $category = Category::findOrFail($id);
+        $category->title = $request->categoryName;
+        $category->slug = $request->categorySlug;
+        $category->meta_title = $request->meta_title;
+        $category->meta_desc = $request->meta_desc;
+        $category->meta_keywords = implode(',', $request->input('meta_keywords', []));
+
+        $category->save();
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully!');
+    }
+
+    public function delete($id)
+    {
+        try {
+            $category = Category::findOrFail($id);
+            $category->delete();
+            return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully!');
+        } catch (\Exception $e) {
+            \Log::error('Error deleting Category: ' . $e->getMessage());
+            return redirect()->route('admin.categories.index')->with('error', 'There was an error deleting the Category.');
+        }
     }
 }

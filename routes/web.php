@@ -53,10 +53,11 @@ Route::get('/admin/categories', [AdminCategoriesController::class, 'index'])->na
 Route::get('/admin/category/create', [AdminCategoriesController::class, 'create'])->name('admin.category.create');
 Route::get('/admin/category/show/{id}', [AdminCategoriesController::class, 'show'])->name('admin.category.show');
 Route::post('/admin/category/store', [AdminCategoriesController::class, 'store'])->name('admin.category.store');
+Route::get('/admin/category/edit/{id}', [AdminCategoriesController::class, 'edit'])->name('admin.category.edit');
+Route::put('/admin/category/update/{id}', [AdminCategoriesController::class, 'update'])->name('admin.category.update');
+Route::get('/admin/category/delete/{id}', [AdminCategoriesController::class, 'delete'])->name('admin.category.delete');
 
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
 Route::get('/admin/pages/terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');
 Route::get('/admin/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
 Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');
-
-

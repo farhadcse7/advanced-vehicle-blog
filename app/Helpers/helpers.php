@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\Cache;
 if (!function_exists('getSiteSettings')) {
     function getSiteSettings()
     {
-        return Cache::remember('site_setting', 60 * 60, function () {
+        // return Cache::remember('site_setting', 60 * 60, function () {
+        //     return DB::table('settings')->first();
+        // });
+        return Cache::remember('site_setting', 1, function () {
             return DB::table('settings')->first();
         });
     }
