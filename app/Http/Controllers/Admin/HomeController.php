@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Post;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Post;
 
 class HomeController extends Controller
 {
@@ -26,10 +25,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->take(5)->get();
-        $posts = Post::latest()->take(5)->get();
-        $totalPosts = Post::count();
-        $totalCategories = Category::count();
-        return view('admin.home', compact('posts', 'categories', 'totalPosts', 'totalCategories'));
+        $categories          = Category::latest()->take(5)->get();
+        $posts               = Post::latest()->take(5)->get();
+        $totalPosts          = Post::count();
+        $totalDraftPosts     = Post::where('status', 0)->count();
+        $totalPublishedPosts = Post::where('status', 1)->count();
+        $totalCategories     = Category::count();
+        return view('admin.home', compact(
+            'posts',
+            'categories',
+            'totalPosts',
+            'totalCategories',
+            'totalDraftPosts',
+            'totalPublishedPosts'
+        ));
     }
 }

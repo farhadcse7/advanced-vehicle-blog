@@ -139,7 +139,7 @@
                                     <textarea class="form-control" id="metaDescription" name="meta_desc" rows="8"
                                         placeholder="Enter meta description">{{ old('meta_desc', $post->meta_desc) }}</textarea>
                                 </div>
-                            
+
                                 <div class="form-group">
                                     <label for="meta_keywords">Keywords</label>
                                     <select id="meta_keywords" name="meta_keywords[]" class="form-control"
@@ -149,6 +149,15 @@
                                                 <option value="{{ $keyword }}" selected>{{ $keyword }}</option>
                                             @endforeach
                                         @endif
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="status">Select Status</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="0" {{ $post->status == 0 ? 'selected' : '' }}>Draft</option>
+                                        <option value="1" {{ $post->status == 1 ? 'selected' : '' }}>Published
+                                        </option>
                                     </select>
                                 </div>
 

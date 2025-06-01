@@ -10,9 +10,9 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::where('status', 1)->latest()->get();
         $categories = Category::all();
-        $latestPosts = Post::latest()->limit(5)->get();
+        $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         return view('welcome', compact('posts', 'categories', 'latestPosts'));
     }
 }

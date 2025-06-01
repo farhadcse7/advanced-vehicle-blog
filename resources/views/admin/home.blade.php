@@ -30,7 +30,7 @@
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.categories.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- Total Posts -->
@@ -43,14 +43,14 @@
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('admin.blogs.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>530</h3>
-                            <p>Pending Posts</p>
+                            <h3>{{ $totalDraftPosts }}</h3>
+                            <p>Draft Posts</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
@@ -61,7 +61,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-default">
                         <div class="inner">
-                            <h3>530</h3>
+                            <h3>{{ $totalPublishedPosts }}</h3>
                             <p>Published Posts</p>
                         </div>
                         <div class="icon">

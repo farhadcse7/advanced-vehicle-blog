@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $latestPosts = Post::latest()->limit(5)->get();
+        $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         return view('pages.contact', compact('latestPosts'));
     }
 

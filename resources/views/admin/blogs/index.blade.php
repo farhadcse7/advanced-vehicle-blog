@@ -46,6 +46,7 @@
                                         <th>Img</th>
                                         <th>Author</th>
                                         <th>Date</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -61,6 +62,9 @@
                                                     height="50" alt="img"></td>
                                             <td>{{ $post->user->name }}</td>
                                             <td>{{ $post->created_at->format('d M, Y') }}</td>
+                                            <td class="{{ $post->status == 1 ? 'text-success' : 'text-danger' }}">
+                                                {{ $post->status == 1 ? 'Published' : 'Draft' }}
+                                            </td>
                                             <td>
                                                 <a href="{{ route('admin.blog.show', $post->id) }}"
                                                     class="btn btn-primary btn-sm">View</a>
@@ -83,6 +87,7 @@
                                         <th>img</th>
                                         <th>Author</th>
                                         <th>Date</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                 </tfoot>

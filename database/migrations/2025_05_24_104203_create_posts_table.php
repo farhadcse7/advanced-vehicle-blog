@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('meta_title')->nullable();
             $table->text('meta_desc')->nullable();
             $table->text('meta_keywords')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

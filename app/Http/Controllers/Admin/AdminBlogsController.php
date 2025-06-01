@@ -67,6 +67,7 @@ class AdminBlogsController extends Controller
             'meta_title' => 'nullable|string|max:60',
             'meta_desc' => 'nullable|string|max:160',
             'meta_keywords' => 'nullable|array',
+            'status' => 'required',
         ]);
 
         try {
@@ -109,6 +110,7 @@ class AdminBlogsController extends Controller
                 $post->meta_keywords = '';
             }
 
+            $post->status = $request->status;
             $post->save();
             return redirect()->route('admin.blog.create')->with('success', 'Blog post created successfully!');
         } catch (\Exception $e) {
@@ -134,6 +136,7 @@ class AdminBlogsController extends Controller
             'meta_title' => 'nullable|string|max:60',
             'meta_desc' => 'nullable|string|max:160',
             'meta_keywords' => 'nullable|array',
+            'status' => 'required',
         ]);
 
 
@@ -169,6 +172,8 @@ class AdminBlogsController extends Controller
         $post->meta_title = $request->meta_title;
         $post->meta_desc = $request->meta_desc;
         $post->meta_keywords = implode(',', $request->input('meta_keywords', []));
+
+        $post->status = $request->status;
 
         $post->save();
 

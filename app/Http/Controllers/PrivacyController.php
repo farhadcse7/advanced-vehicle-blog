@@ -11,7 +11,7 @@ class PrivacyController extends Controller
     public function index()
     {
         $content = DB::table('privacies')->first();
-        $latestPosts = Post::latest()->limit(5)->get();
+        $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         return view('pages.privacy', compact('content', 'latestPosts'));
     }
 }

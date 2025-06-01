@@ -11,7 +11,7 @@ class TermsController extends Controller
     public function index()
     {
         $content = DB::table('terms')->first();
-        $latestPosts = Post::latest()->limit(5)->get();
+        $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         return view('pages.terms', compact('content', 'latestPosts'));
     }
 }

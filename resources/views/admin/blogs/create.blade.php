@@ -146,6 +146,14 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="status">Select Status</label>
+                                    <select class="form-control" id="status" name="status">
+                                        <option value="0">Draft</option>
+                                        <option value="1">Published</option>
+                                    </select>
+                                </div>
+
                             </div>
                             <!-- /.card-body -->
 
