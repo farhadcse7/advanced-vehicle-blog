@@ -60,6 +60,7 @@ class AdminSettingsController extends Controller
         try {
 
             $setting = DB::table('settings')->where('id', $id)->first();
+            $data = [];
 
             // Handle Logo Upload
             if ($request->hasFile('logo')) {
@@ -77,8 +78,8 @@ class AdminSettingsController extends Controller
                 }
 
                 if ($logoFile->move($logoPath, $logoName)) {
-                    // $data['logo'] = $logoName;
-                    $logo = $logoName;
+                    $data['logo'] = $logoName;
+                    // $logo = $logoName;
                 } else {
                     return response()->json(['error' => 'Logo upload failed'], 500);
                 }
@@ -100,14 +101,14 @@ class AdminSettingsController extends Controller
                 }
 
                 if ($favFile->move($favPath, $favName)) {
-                    // $data['fav_icon'] = $favName;
-                    $fav_icon = $favName;
+                    $data['fav_icon'] = $favName;
+                    // $fav_icon = $favName;
                 } else {
                     return response()->json(['error' => 'Favicon upload failed'], 500);
                 }
             }
 
-            $data = [
+            $formdata = [
                 // 'site_name'             => $request->input('site_name'),
                 'phone'                 => $request->input('phone'),
                 'email'                 => $request->input('email'),
@@ -127,9 +128,12 @@ class AdminSettingsController extends Controller
                 'contact_meta_title'    => $request->input('contact_meta_title'),
                 'contact_meta_desc'     => $request->input('contact_meta_desc'),
                 'contact_meta_keywords' => implode(',', $request->input('contact_meta_keywords', [])),
-                'logo' =>  $logo,
-                'fav_icon' =>  $fav_icon,
+                // 'logo' =>  $logo,
+                // 'fav_icon' =>  $fav_icon,
             ];
+
+            // Merge uploaded files with form data
+            $data = array_merge($data, $formdata);
 
             // Update using Query Builder
             DB::table('settings')->where('id', $id)->update($data);
