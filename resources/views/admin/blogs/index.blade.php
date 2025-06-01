@@ -55,8 +55,8 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $post->title }}</td>
-                                            <td>{{ $post->category->title }}</td>
-                                            <td>{{ Str::limit($post->description, 50) }}</td>
+                                            <td>{{ $post->category->title ?? 'N/A' }}</td>
+                                            <td>{!! Str::limit($post->description, 50) !!}</td>
                                             <td><img src="{{ asset('assets/images/blog/' . $post->img) }}" width="50"
                                                     height="50" alt="img"></td>
                                             <td>{{ $post->user->name }}</td>

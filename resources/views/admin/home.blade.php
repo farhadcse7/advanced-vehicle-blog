@@ -24,7 +24,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>150</h3>
+                            <h3>{{ $totalCategories ?? 0 }}</h3>
                             <p>Total Categories</p>
                         </div>
                         <div class="icon">
@@ -37,7 +37,7 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>530</h3>
+                            <h3>{{ $totalPosts ?? 0 }}</h3>
                             <p>Total Posts</p>
                         </div>
                         <div class="icon">
@@ -86,56 +86,59 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table m-0">
+                                <table id="postlist" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>SL.</th>
                                             <th>Title</th>
                                             <th>Category</th>
-                                            <th>Created AT</th>
-                                            <th>Action</th>
+                                            <th>Desc</th>
+                                            <th>Author</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#">P001</a></td>
-                                            <td>Post Title 1</td>
-                                            <td>Category 1</td>
-                                            <td>2024-07-01</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">P002</a></td>
-                                            <td>Post Title 2</td>
-                                            <td>Category 2</td>
-                                            <td>2024-07-02</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">P003</a></td>
-                                            <td>Post Title 3</td>
-                                            <td>Category 3</td>
-                                            <td>2024-07-03</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#">P003</a></td>
-                                            <td>Post Title 3</td>
-                                            <td>Category 3</td>
-                                            <td>2024-07-03</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <!-- Add more posts as needed -->
+                                        <!-- Demo data rows -->
+                                        @foreach ($posts as $post)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $post->title }}</td>
+                                                <td>{{ $post->category->title ?? 'N/A' }}</td>
+                                                <td>{!! Str::limit($post->description, 50) !!}</td>
+
+                                                <td>{{ $post->user->name }}</td>
+                                                <td>{{ $post->created_at->format('d M, Y') }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.blog.show', $post->id) }}"
+                                                        class="btn btn-primary btn-sm">View</a>
+                                                    <a href="{{ route('admin.blog.edit', $post->id) }}"
+                                                        class="btn btn-info btn-sm">Edit</a>
+                                                    <a onclick="return confirm('Are you really sure to delete ?')"
+                                                        href="{{ route('admin.blog.delete', $post->id) }}"
+                                                        class="btn btn-danger btn-sm">Delete</a>
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>desc</th>
+                                            <th>Author</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
                         <div class="card-footer clearfix">
-                            <a href="#" class="btn btn-sm btn-secondary float-right">View All Post</a>
+                            <a href="{{ route('admin.blogs.index') }}" class="btn btn-sm btn-secondary float-right">View
+                                All Post</a>
                         </div>
                     </div>
                 </div>
@@ -157,44 +160,54 @@
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table m-0">
+                                <table id="postlist" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Category ID</th>
+                                            <th>SL.</th>
                                             <th>Category Name</th>
-                                            <th>Date Created</th>
-                                            <th>Action</th>
+                                            <th>Slug</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>C001</td>
-                                            <td>Category 1</td>
-                                            <td>2024-06-01</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>C002</td>
-                                            <td>Category 2</td>
-                                            <td>2024-06-02</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>C003</td>
-                                            <td>Category 3</td>
-                                            <td>2024-06-03</td>
-                                            <td><a href="">View</a> || <a href="">Edit</a> || <a
-                                                    href="">Delete</a></td>
-                                        </tr>
-                                        <!-- Add more categories as needed -->
+                                        <!-- Demo data rows -->
+                                        @foreach ($categories as $category)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $category->title }}</td>
+                                                <td>{{ $category->slug }}</td>
+                                                <td>{{ $category->created_at->format('d M, Y') }}</td>
+                                                <td>
+                                                    <a href="{{ route('admin.category.show', $category->id) }}"
+                                                        class="btn btn-primary btn-sm">View</a>
+                                                    <a href="{{ route('admin.category.edit', $category->id) }}"
+                                                        class="btn btn-info btn-sm">Edit</a>
+                                                    <a onclick="return confirm('Are you really sure to delete ?')"
+                                                        href="{{ route('admin.category.delete', $category->id) }}"
+                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
                                     </tbody>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Category Name</th>
+                                            <th>Slug</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>
                         </div>
                         <div class="card-footer clearfix">
-                            <a href="#" class="btn btn-sm btn-secondary float-right">View All Categories</a>
+                            <a href="{{ route('admin.categories.index') }}"
+                                class="btn btn-sm btn-secondary float-right">View All Categories</a>
                         </div>
                     </div>
                 </div>
