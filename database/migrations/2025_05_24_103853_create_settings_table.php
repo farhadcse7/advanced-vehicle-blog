@@ -34,6 +34,8 @@ return new class extends Migration
             $table->string('contact_meta_title')->nullable();
             $table->text('contact_meta_desc')->nullable();
             $table->text('contact_meta_keywords')->nullable();
+            $table->text('headcss')->nullable();
+            $table->text('footerscript')->nullable();
             $table->timestamps();
         });
     }

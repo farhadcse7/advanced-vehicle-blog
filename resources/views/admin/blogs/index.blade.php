@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 @section('title', 'Post List')
+@push('css')
+    {{-- data table css  --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.min.css">
+@endpush
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -102,3 +106,11 @@
     </div>
     <!-- /.content -->
 @endsection
+@push('scripts')
+    {{-- data table js  --}}
+    <script src="https://cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#postlist');
+    </script>
+    {{-- data table js end  --}}
+@endpush

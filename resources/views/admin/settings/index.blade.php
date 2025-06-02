@@ -73,7 +73,8 @@
                                     {{-- Logo --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="logo">Upload Logo</label>
+                                            <label for="logo">Upload Logo (<span class="text-danger">Logo recommend size
+                                                    320px x 160px</span>)</label>
                                             <input type="file" class="form-control-file" id="logo" name="logo">
                                             @if ($data->logo)
                                                 <p>Current: <img src="{{ asset('assets/images/' . $data->logo) }}"
@@ -86,7 +87,8 @@
                                     {{-- Favicon --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="favicon">Upload Favicon</label>
+                                            <label for="favicon">Upload Favicon (<span class="text-danger">FavIcon
+                                                    recommend size 60px x 60px</span>)</label>
                                             <input type="file" class="form-control-file" id="favicon" name="fav_icon">
                                             @if ($data->fav_icon)
                                                 <p>Current: <img src="{{ asset('assets/images/' . $data->fav_icon) }}"
@@ -259,6 +261,22 @@
                                             <label for="contact_meta_desc">Contact Meta Description (Max 160
                                                 characters)</label>
                                             <textarea class="form-control" id="contact_meta_desc" name="contact_meta_desc" rows="4">{{ old('contact_meta_desc', $data->contact_meta_desc) }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    {{-- head css --}}
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="headcss">Apply CSS</label>
+                                            <textarea class="form-control" id="headcss" name="headcss" rows="4">{{ old('headcss', $data->headcss) }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    {{-- footer script  --}}
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="footerscript">Apply Script</label>
+                                            <textarea class="form-control" id="footerscript" name="footerscript" rows="4">{{ old('footerscript', $data->footerscript) }}</textarea>
                                         </div>
                                     </div>
 

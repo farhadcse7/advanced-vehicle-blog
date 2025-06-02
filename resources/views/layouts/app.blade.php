@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    {{-- admin settings css  --}}
+    <style>
+        {{ getSiteSettings()->headcss }}
+    </style>
 </head>
 
 <body>
@@ -130,6 +134,10 @@
         <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         @stack('scripts')
+        {{-- admin settings script  --}}
+        <script>
+            {{ getSiteSettings()->footerscript }}
+        </script>
 
 </body>
 
