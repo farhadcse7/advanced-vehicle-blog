@@ -6,7 +6,8 @@
         <div class="categories_list">
             <ul>
                 @foreach ($categories as $category)
-                    <li><a href="{{ route('category.show', $category->slug) }}">{{ $category->title }}</a></li>
+                    <li><a href="{{ route('category.show', $category->slug) }}">{{ $category->title }}
+                            ({{ $category->posts_count }})</a></li>
                 @endforeach
             </ul>
         </div>

@@ -14,4 +14,9 @@ class Category extends Model
         'meta_desc',
         'meta_keywords',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
