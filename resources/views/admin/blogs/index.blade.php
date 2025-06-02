@@ -21,12 +21,6 @@
             </div>
         </div>
     </div>
-    <!-- /.content-header -->
-    @if (session('success'))
-        <div class="alert alert-success m-2">
-            {{ session('success') }}
-        </div>
-    @endif
 
     <!-- Main content -->
     <div class="content">
@@ -38,8 +32,29 @@
                             <h3 class="card-title">Posts</h3>
                             <a class="float-right" href="{{ route('admin.blog.create') }}">Add Post +</a>
                         </div>
+                        <!-- /.content-header -->
+                        @if (session('success'))
+                            <div class="alert alert-success m-2">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
                         <!-- /.card-header -->
                         <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select class="form-control" name="status" id="status">
+                                        <option disabled>Select Option</option>
+                                        <option value="" {{ request('status') === null ? 'selected' : '' }}>All Post
+                                        </option>
+                                        <option value="0" {{ request('status') === '0' ? 'selected' : '' }}>Draft
+                                            Post</option>
+                                        <option value="1" {{ request('status') === '1' ? 'selected' : '' }}>Published
+                                            Post</option>
+                                    </select>
+                                </div>
+                            </div>
                             <table id="postlist" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -113,4 +128,25 @@
         let table = new DataTable('#postlist');
     </script>
     {{-- data table js end  --}}
+
+    {{-- Filtering script by status  --}}
+    <script>
+        $(document).ready(function() {
+            $('#status').on('change', function() {
+                var status = $(this).val();
+                var url = new URL(window.location.href); // Get the current URL
+
+                if (status !== "") {
+                    url.searchParams.set('status', status); // Set the status parameter
+                } else {
+                    url.searchParams.delete(
+                        'status'); // Remove the status parameter if "All Post" is selected
+                }
+
+                // Reload the page with the new URL
+                window.location.href = url.toString();
+            });
+        });
+    </script>
+    {{-- Filtering script by status  end --}}
 @endpush

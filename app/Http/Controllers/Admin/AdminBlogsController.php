@@ -28,8 +28,22 @@ class AdminBlogsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $status = request('status');
+        //Start the query to fetch posts
+        $query = Post::query();
+
+        // If a status is provided, filter the posts by status
+        if ($status !== null && $status !== '') {
+            $query->where('status', $status);
+        }
+
+        // Set all posts based on the query
+        $posts = $query->get();
+
         return view('admin.blogs.index', compact('posts'));
+
+        // $posts = Post::all();
+        // return view('admin.blogs.index', compact('posts'));
     }
 
     public function create()
