@@ -118,6 +118,14 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.contact.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Contacts
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.settings.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>

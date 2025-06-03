@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 
 class AdminPagesController extends Controller
 {
@@ -84,5 +85,11 @@ class AdminPagesController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('admin.pages.disclaimer')->with('error', 'Failed to update Disclaimers: ' . $e->getMessage());
         }
+    }
+
+    public function contact()
+    {
+        $contacts = Contact::all();
+        return view('admin.pages.contact', compact('contacts'));
     }
 }

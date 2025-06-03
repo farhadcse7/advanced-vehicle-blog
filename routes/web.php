@@ -45,6 +45,7 @@ Auth::routes(); //auth routes from laravel/ui
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+//blogs
 Route::get('/admin/blogs', [AdminBlogsController::class, 'index'])->name('admin.blogs.index');
 Route::get('/admin/blog/create', [AdminBlogsController::class, 'create'])->name('admin.blog.create');
 Route::get('/admin/blog/edit/{id}', [AdminBlogsController::class, 'edit'])->name('admin.blog.edit');
@@ -53,6 +54,8 @@ Route::get('/admin/blog/delete/{id}', [AdminBlogsController::class, 'delete'])->
 Route::post('/admin/blog/store', [AdminBlogsController::class, 'store'])->name('admin.blog.store');
 Route::get('/admin/blog/show/{id}', [AdminBlogsController::class, 'show'])->name('admin.blog.show');
 
+
+//categories
 Route::get('/admin/categories', [AdminCategoriesController::class, 'index'])->name('admin.categories.index');
 Route::get('/admin/category/create', [AdminCategoriesController::class, 'create'])->name('admin.category.create');
 Route::get('/admin/category/show/{id}', [AdminCategoriesController::class, 'show'])->name('admin.category.show');
@@ -61,6 +64,7 @@ Route::get('/admin/category/edit/{id}', [AdminCategoriesController::class, 'edit
 Route::put('/admin/category/update/{id}', [AdminCategoriesController::class, 'update'])->name('admin.category.update');
 Route::get('/admin/category/delete/{id}', [AdminCategoriesController::class, 'delete'])->name('admin.category.delete');
 
+//other pages
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
 Route::put('/admin/pages/privacy/{id}', [AdminPrivacyController::class, 'update'])->name('admin.privacy.update');
 Route::get('/admin/pages/terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');
@@ -70,6 +74,10 @@ Route::put('/admin/pages/about/{id}', [AdminPagesController::class, 'aboutUpdate
 Route::get('/admin/pages/disclaimer', [AdminPagesController::class, 'disclaimer'])->name('admin.pages.disclaimer');
 Route::put('/admin/pages/disclaimer/{id}', [AdminPagesController::class, 'disclaimerUpdate'])->name('admin.disclaimer.update');
 
+//contact messages
+Route::get('/admin/contact', [AdminPagesController::class, 'contact'])->name('admin.contact.index');
+
+// Admin profile and settings
 Route::get('/admin/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
 Route::put('/admin/settings/update/{id}', [AdminSettingsController::class, 'update'])->name('admin.settings.update');
 Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile.index');

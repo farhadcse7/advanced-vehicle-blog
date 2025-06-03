@@ -71,7 +71,21 @@
                             {{ session('success') }}
                         </div>
                     @endif
+                    @if ($errors->any())
+                        <div class="alert alert-danger mt-2">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="contact_form">
+                        @php
+                            $num1 = rand(1, 10);
+                            $num2 = rand(1, 10);
+                            $sum = $num1 + $num2;
+                        @endphp
                         <form class="row" action="{{ route('savecontact') }}" method="post">
                             @csrf
                             <div class="col-md-6 mb-3">
@@ -98,19 +112,22 @@
                                 <textarea name="message" id="message" placeholder="Write your message" class="form-control shadow-none"
                                     rows="5"></textarea>
                             </div>
+                            {{-- Math Captcha  --}}
+                            <div class="col-md-12 mb-3">
+                                <label for="captcha" class="form-label form--label">
+                                    What is <strong>{{ $num1 }}</strong> + <strong>{{ $num2 }}</strong>?
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <input type="hidden" name="captcha_answer" value="{{ $sum }}">
+                                <input type="text" name="captcha" id="captcha" placeholder="Enter the Sum"
+                                    class="form-control shadow-none" required>
+                            </div>
+
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary btn-sm px-5 text-uppercase">Submit</button>
                             </div>
                         </form>
-                        @if ($errors->any())
-                            <div class="alert alert-danger mt-2">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+
                     </div>
                 </div>
                 <div class="col-xl-6">

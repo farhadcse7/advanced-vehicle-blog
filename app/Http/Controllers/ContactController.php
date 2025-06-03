@@ -26,6 +26,12 @@ class ContactController extends Controller
             'subject' => 'required|string|max:255',
             'message' => 'required|string|max:1000',
         ]);
+
+        //check if the Captcha is valid
+        if ($request->captcha != $request->captcha_answer) {
+            return redirect()->back()->withErrors(['captcha' => 'The CAPTCHA answer is incorrect.']);
+        }
+
         Contact::create($request->all());
 
         // Prepare form data for email
