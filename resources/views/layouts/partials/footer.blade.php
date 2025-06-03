@@ -105,6 +105,8 @@
                             <div class="links">
                                 <ul>
                                     <li><a href="{{ route('blogs.index') }}">Blog</a></li>
+                                    <li><a href="{{ route('about.index') }}">About</a></li>
+                                    <li><a href="{{ route('disclaimer.index') }}">Disclaimer</a></li>
                                     <li><a href="{{ route('privacy.index') }}">Privacy Policy</a></li>
                                     <li><a href="{{ route('terms.index') }}">Terms Conditions</a></li>
                                 </ul>

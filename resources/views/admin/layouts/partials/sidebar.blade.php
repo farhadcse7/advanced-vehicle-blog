@@ -69,6 +69,18 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('admin.pages.about') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>About Us</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.pages.disclaimer') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Disclarimers</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('admin.pages.privacy') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Privacy Policy</p>

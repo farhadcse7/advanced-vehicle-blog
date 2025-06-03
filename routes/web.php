@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\TermsController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PrivacyController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Admin\AdminBlogsController;
+use App\Http\Controllers\Admin\AdminPagesController;
 use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AdminPrivacyController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -35,6 +37,8 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::post('/savecontact', [ContactController::class, 'store'])->name('savecontact');
 Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy.index');
 Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
+Route::get('/about', [PagesController::class, 'about'])->name('about.index');
+Route::get('/disclaimer', [PagesController::class, 'disclaimer'])->name('disclaimer.index');
 
 // Admin routes
 Auth::routes(); //auth routes from laravel/ui
@@ -61,6 +65,10 @@ Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->na
 Route::put('/admin/pages/privacy/{id}', [AdminPrivacyController::class, 'update'])->name('admin.privacy.update');
 Route::get('/admin/pages/terms', [AdminTermsController::class, 'index'])->name('admin.pages.terms');
 Route::put('/admin/pages/terms/{id}', [AdminTermsController::class, 'update'])->name('admin.terms.update');
+Route::get('/admin/pages/about', [AdminPagesController::class, 'about'])->name('admin.pages.about');
+Route::put('/admin/pages/about/{id}', [AdminPagesController::class, 'aboutUpdate'])->name('admin.about.update');
+Route::get('/admin/pages/disclaimer', [AdminPagesController::class, 'disclaimer'])->name('admin.pages.disclaimer');
+Route::put('/admin/pages/disclaimer/{id}', [AdminPagesController::class, 'disclaimerUpdate'])->name('admin.disclaimer.update');
 
 Route::get('/admin/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
 Route::put('/admin/settings/update/{id}', [AdminSettingsController::class, 'update'])->name('admin.settings.update');

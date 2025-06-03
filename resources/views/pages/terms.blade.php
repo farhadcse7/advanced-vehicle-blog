@@ -23,7 +23,7 @@
                 <div class="page_content">
                     <h1 class="page_title">{{ $content->name ?? 'Not Available' }}</h1>
                     <div class="desc">
-                        <p>{{ $content->description ?? 'Not Available' }}</p>
+                        <p>{!! $content->description ?? 'Not Available' !!}</p>
                     </div>
                 </div>
             </div>
