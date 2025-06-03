@@ -75,64 +75,68 @@
     <!-- ======================= Blog Details End  ============================ -->
 
     <!-- ======================= Related Post Start  ============================ -->
-    <div class="related_section pt-4 pb-4 border-top">
-        <div class="container">
-            <div class="section_heading pb-4">
-                <h1 class="section_title">You may also like</h1>
-            </div>
-            <div class="related_posts owl-theme owl-carousel">
-                <!-- blog post -->
-                @foreach ($relatedPosts as $relatedPost)
-                    <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
-                        <div class="blog_img mb-4 position-relative">
-                            <a href="{{ route('blog.show', $relatedPost->slug) }}">
-                                <img class="img-fluid rounded z-3"
-                                    src="{{ asset('assets/images/blog/' . $relatedPost->img) }}" alt="Health & Wellness">
-                            </a>
-                        </div>
-                        <div class="short_info d-sm-flex align-items-center mb-3">
-                            <div class="mb-2 mb-sm-0 me-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon me-1">
-                                        <img src="{{ asset('assets/images/tag.svg') }}" alt="Tag">
+    @if ($relatedPosts->count() > 0)
+        <div class="related_section pt-4 pb-4 border-top">
+            <div class="container">
+                <div class="section_heading pb-4">
+                    <h1 class="section_title">You may also like</h1>
+                </div>
+                <div class="related_posts owl-theme owl-carousel">
+                    <!-- blog post -->
+                    @foreach ($relatedPosts as $relatedPost)
+                        <div class="blog_post p-3 p-lg-4 card h-100 bg-transparent shadow-sm border-opacity-10">
+                            <div class="blog_img mb-4 position-relative">
+                                <a href="{{ route('blog.show', $relatedPost->slug) }}">
+                                    <img class="img-fluid rounded z-3"
+                                        src="{{ asset('assets/images/blog/' . $relatedPost->img) }}"
+                                        alt="Health & Wellness">
+                                </a>
+                            </div>
+                            <div class="short_info d-sm-flex align-items-center mb-3">
+                                <div class="mb-2 mb-sm-0 me-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon me-1">
+                                            <img src="{{ asset('assets/images/tag.svg') }}" alt="Tag">
+                                        </div>
+                                        <div class="date"><span>{{ $relatedPost->category->title }}</span></div>
                                     </div>
-                                    <div class="date"><span>{{ $relatedPost->category->title }}</span></div>
+                                </div>
+                                <div class="mb-2 mb-sm-0 me-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon me-1">
+                                            <img src="{{ asset('assets/images/calendar.svg') }}" alt="Date">
+                                        </div>
+                                        <div class="date"><span>{{ $relatedPost->created_at->format('d M, Y') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon me-1">
+                                            <img src="{{ asset('assets/images/eye.svg') }}" alt="View">
+                                        </div>
+                                        <div class="date"><span>{{ $relatedPost->views }}</span></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-2 mb-sm-0 me-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon me-1">
-                                        <img src="{{ asset('assets/images/calendar.svg') }}" alt="Date">
-                                    </div>
-                                    <div class="date"><span>{{ $relatedPost->created_at->format('d M, Y') }}</span></div>
+                            <div class="blog_content card-body p-0">
+                                <h3 class="mb-3">
+                                    <a href="{{ route('blog.show', $relatedPost->slug) }}">{{ $relatedPost->title }}</a>
+                                </h3>
+                                <div class="blog_desc mb-2">
+                                    {!! $relatedPost->description !!}
                                 </div>
                             </div>
-                            <div class="">
-                                <div class="d-flex align-items-center">
-                                    <div class="icon me-1">
-                                        <img src="{{ asset('assets/images/eye.svg') }}" alt="View">
-                                    </div>
-                                    <div class="date"><span>{{ $relatedPost->views }}</span></div>
-                                </div>
+                            <hr>
+                            <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
+                                <a class="learn_more" href="{{ route('blog.show', $relatedPost->slug) }}">Read More</a>
                             </div>
                         </div>
-                        <div class="blog_content card-body p-0">
-                            <h3 class="mb-3">
-                                <a href="{{ route('blog.show', $relatedPost->slug) }}">{{ $relatedPost->title }}</a>
-                            </h3>
-                            <div class="blog_desc mb-2">
-                                {!! $relatedPost->description !!}
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                            <a class="learn_more" href="{{ route('blog.show', $relatedPost->slug) }}">Read More</a>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
+    @endif
     <!-- ======================= Related Post End  ============================ -->
 @endsection
 
