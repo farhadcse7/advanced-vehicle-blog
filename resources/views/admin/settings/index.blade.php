@@ -97,6 +97,15 @@
                                         </div>
                                     </div>
 
+                                    {{-- Site Name --}}
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="site_name">Site Name</label>
+                                            <input type="text" class="form-control" id="site_name" name="site_name"
+                                                value="{{ old('site_name', $data->site_name) }}">
+                                        </div>
+                                    </div>
+
                                     {{-- Phone --}}
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -277,6 +286,26 @@
                                         <div class="form-group">
                                             <label for="footerscript">Apply Script</label>
                                             <textarea class="form-control" id="footerscript" name="footerscript" rows="4">{{ old('footerscript', $data->footerscript) }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    {{-- Disqus Plugin  --}}
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="footerscript">Disqus Plugin (ex: https-github-com-csly2023)</label>
+                                            <input type="text" class="form-control" id="disqus" name="disqus"
+                                                placeholder="enter disqus link id" value="{{ old('disqus', $data->disqus) }}">
+                                        </div>
+                                    </div>
+
+                                    {{-- Share now plugin  --}}
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="shareplugin">Share now Plugin (ex:
+                                                683cd19798608700128ca0ad)</label>
+                                            <input type="text" class="form-control" id="shareplugin"
+                                                name="shareplugin"
+                                                placeholder="enter sharethis property id" value="{{ old('shareplugin', $data->shareplugin) }}">
                                         </div>
                                     </div>
 

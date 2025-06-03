@@ -11,11 +11,13 @@
     <meta name="googlebot" content="index,follow">
     <meta name="author" content="rony">
     <meta name="csrf-token" content="">
-    <meta property="og:image" content="{{ asset('assets/images/' . getSiteSettings()->fav_icon) }}">
-    <meta property="og:site_name" content="Blog">
-    <meta property="og:title" content="top business news - Blog">
-    <meta property="og:url" content="https://blog.com">
-    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ asset('assets/images/' . getSiteSettings()->logo) }}">
+    <meta property="og:site_name" content="{{ getSiteSettings()->site_name }}">
+    <meta property="og:title" content="@yield('title')">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="@yield('description')">
+    <meta property="og:locale" content="en_US">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
     <!-- Favicon -->

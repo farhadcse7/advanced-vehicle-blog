@@ -147,10 +147,18 @@
         this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
         };
         */
+        // (function() { // DON'T EDIT BELOW THIS LINE
+        //     var d = document,
+        //         s = d.createElement('script');
+        //     s.src = 'https://https-github-com-csly2023.disqus.com/embed.js';
+        //     s.setAttribute('data-timestamp', +new Date());
+        //     (d.head || d.body).appendChild(s);
+        // })();
+
         (function() { // DON'T EDIT BELOW THIS LINE
             var d = document,
                 s = d.createElement('script');
-            s.src = 'https://https-github-com-csly2023.disqus.com/embed.js';
+            s.src = 'https://{{ getSiteSettings()->disqus }}.disqus.com/embed.js';
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         })();
@@ -159,7 +167,10 @@
             Disqus.</a></noscript>
 
     {{-- share this plugin  --}}
-    <script type='text/javascript'
+    {{-- <script type='text/javascript'
         src='https://platform-api.sharethis.com/js/sharethis.js#property=683cd19798608700128ca0ad&product=sticky-share-buttons'
+        async='async'></script> --}}
+    <script type='text/javascript'
+        src='https://platform-api.sharethis.com/js/sharethis.js#property={{ getSiteSettings()->shareplugin }}&product=sticky-share-buttons'
         async='async'></script>
 @endpush

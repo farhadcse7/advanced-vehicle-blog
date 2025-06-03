@@ -36,6 +36,8 @@ return new class extends Migration
             $table->text('contact_meta_keywords')->nullable();
             $table->text('headcss')->nullable();
             $table->text('footerscript')->nullable();
+            $table->string('disqus')->nullable();
+            $table->string('shareplugin')->nullable();
             $table->timestamps();
         });
     }

@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class AdminSettingsController extends Controller
 {
@@ -35,7 +34,7 @@ class AdminSettingsController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            // 'site_name'            => 'nullable|string|max:255',
+            'site_name'            => 'nullable|string|max:255',
             'logo'                  => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
             'fav_icon'              => 'nullable|image|mimes:jpg,jpeg,png,ico,svg|max:1024',
             'phone'                 => 'required|string|max:20',
@@ -57,7 +56,8 @@ class AdminSettingsController extends Controller
             'contact_meta_desc'     => 'nullable|string|max:160',
             'contact_meta_keywords' => 'nullable|array',
             'headcss'               => 'nullable|string',
-            'footerscript'          => 'nullable|string',
+            'disqus'                => 'nullable|string',
+            'shareplugin'           => 'nullable|string',
         ]);
 
         try {
@@ -112,7 +112,7 @@ class AdminSettingsController extends Controller
             }
 
             $formdata = [
-                // 'site_name'             => $request->input('site_name'),
+                'site_name'             => $request->input('site_name'),
                 'phone'                 => $request->input('phone'),
                 'email'                 => $request->input('email'),
                 'address'               => $request->input('address'),
@@ -135,6 +135,8 @@ class AdminSettingsController extends Controller
                 // 'fav_icon' =>  $fav_icon,
                 'headcss'               => $request->input('headcss'),
                 'footerscript'          => $request->input('footerscript'),
+                'disqus'                => $request->input('disqus'),
+                'shareplugin'           => $request->input('shareplugin'),
             ];
 
             // Merge uploaded files with form data
