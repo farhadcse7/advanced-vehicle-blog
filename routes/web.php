@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\AdminPrivacyController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Http\Controllers\Admin\AdminCategoriesController;
+use App\Http\Controllers\Admin\AdminAdvertisementController;
 
 Route::get('/', [WelcomeController::class, 'index']);
 
@@ -63,6 +64,13 @@ Route::post('/admin/category/store', [AdminCategoriesController::class, 'store']
 Route::get('/admin/category/edit/{id}', [AdminCategoriesController::class, 'edit'])->name('admin.category.edit');
 Route::put('/admin/category/update/{id}', [AdminCategoriesController::class, 'update'])->name('admin.category.update');
 Route::get('/admin/category/delete/{id}', [AdminCategoriesController::class, 'delete'])->name('admin.category.delete');
+
+//advertisements routes
+Route::get('/admin/advertisements', [AdminAdvertisementController::class, 'index'])->name('admin.advertisements.index');
+Route::get('/admin/advertisement/create', [AdminAdvertisementController::class, 'create'])->name('admin.advertisement.create');
+Route::get('/admin/advertisement/edit/{id}', [AdminAdvertisementController::class, 'edit'])->name('admin.advertisement.edit');
+Route::get('/admin/advertisement/delete/{id}', [AdminAdvertisementController::class, 'delete'])->name('admin.advertisement.delete');
+
 
 //other pages
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
