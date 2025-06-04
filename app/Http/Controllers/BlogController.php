@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Advertisement;
 
 class BlogController extends Controller
 {
@@ -20,7 +21,8 @@ class BlogController extends Controller
         ])->get();
 
         $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
-        return view('blogs.index', compact('posts', 'categories', 'latestPosts'));
+        $advertiseBanner = Advertisement::where('status', 1)->inRandomOrder()->limit(1)->get();
+        return view('blogs.index', compact('posts', 'categories', 'latestPosts', 'advertiseBanner'));
     }
 
 
@@ -70,6 +72,7 @@ class BlogController extends Controller
 
         $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         $relatedPosts = Post::where('status', 1)->where('category_id', $post->category_id)->where('id', '!=', $post->id)->latest()->limit(3)->get();
-        return view('blogs.show', compact('post', 'categories', 'latestPosts', 'relatedPosts'));
+        $advertiseBanner = Advertisement::where('status', 1)->inRandomOrder()->limit(1)->get();
+        return view('blogs.show', compact('post', 'categories', 'latestPosts', 'relatedPosts', 'advertiseBanner'));
     }
 }

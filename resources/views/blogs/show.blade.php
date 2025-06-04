@@ -15,6 +15,25 @@
         </div>
     </div>
     <!-- ======================= breadcrumb End  ============================ -->
+    <!-- banner advertisement start -->
+    @if ($advertiseBanner->count() > 0)
+        <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
+            <div class="container">
+                @foreach ($advertiseBanner as $ad)
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <a target="_blank" href="{{ $ad->link ?? '#' }}">
+                                <div class="ad-banner">
+                                    <img src="{{ asset('assets/images/banner/' . $ad->img) }}" alt="{{ $ad->name }}"
+                                        class="ad-image">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+    @endif
+    <!-- banner advertisement end -->
     <!-- ======================= Blog Details Start  ============================ -->
     <div class="blog_details_section bg-white overflow-hidden pt-4 pb-4">
         <div class="container">
@@ -106,7 +125,8 @@
                                         <div class="icon me-1">
                                             <img src="{{ asset('assets/images/calendar.svg') }}" alt="Date">
                                         </div>
-                                        <div class="date"><span>{{ $relatedPost->created_at->format('d M, Y') }}</span>
+                                        <div class="date">
+                                            <span>{{ $relatedPost->created_at->format('d M, Y') }}</span>
                                         </div>
                                     </div>
                                 </div>

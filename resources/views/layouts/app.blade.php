@@ -46,49 +46,34 @@
 
     @include('layouts.partials.header')
 
-    <!-- banner advertisement start -->
-    <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-12 mt-0">
-                    <a href="#">
-                        <div class="ad-banner">
-                            <img src="{{ asset('/') }}assets/images/banner.png" alt="Advertisement"
-                                class="ad-image">
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
 
-        <!-- banner advertisement end -->
-        <!-- ======================= Section content Start  ============================ -->
-        @yield('content')
-        <!-- ======================= Section content End  ============================ -->
+    <!-- ======================= Section content Start  ============================ -->
+    @yield('content')
+    <!-- ======================= Section content End  ============================ -->
 
-        @include('layouts.partials.footer')
+    @include('layouts.partials.footer')
 
-        <!-- scroll to top -->
-        <div class="scrollToTop">
-            <i class="fa fa-angle-up"></i>
-        </div>
+    <!-- scroll to top -->
+    <div class="scrollToTop">
+        <i class="fa fa-angle-up"></i>
+    </div>
 
-        <!-- Js -->
-        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-        <script src="{{ asset('assets/js/lightgallery.min.js') }}"></script>
-        <script src="{{ asset('assets/js/owlcarousel.min.js') }}"></script>
-        <script src="{{ asset('assets/js/flatpickr.min.js') }}"></script>
-        <script src="{{ asset('assets/js/select2.min.js') }}"></script>
-        <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
-        <script src="{{ asset('assets/js/intlTelInput-jquery.js') }}"></script>
-        <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('assets/js/main.js') }}"></script>
-        @stack('scripts')
-        {{-- admin settings script  --}}
-        <script>
-            {{ getSiteSettings()->footerscript }}
-        </script>
+    <!-- Js -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lightgallery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/owlcarousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/intlTelInput.js') }}"></script>
+    <script src="{{ asset('assets/js/intlTelInput-jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    @stack('scripts')
+    {{-- admin settings script  --}}
+    <script>
+        {{ getSiteSettings()->footerscript }}
+    </script>
 
 </body>
 

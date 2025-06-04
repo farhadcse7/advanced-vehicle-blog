@@ -48,6 +48,25 @@
     </div>
     <!-- ======================= slider End  ============================ -->
 
+    <!-- banner advertisement start -->
+    @if ($advertiseBanner->count() > 0)
+        <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
+            <div class="container">
+                @foreach ($advertiseBanner as $ad)
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <a target="_blank" href="{{ $ad->link ?? '#' }}">
+                                <div class="ad-banner">
+                                    <img src="{{ asset('assets/images/banner/' . $ad->img) }}" alt="{{ $ad->name }}"
+                                        class="ad-image">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+    @endif
+    <!-- banner advertisement end -->
     <!-- ======================= Blog Start  ============================ -->
     <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
         <div class="container">
@@ -77,7 +96,8 @@
                                                         <div class="icon me-1">
                                                             <img src="assets/images/tag.svg" alt="Tag">
                                                         </div>
-                                                        <div class="date"><span>{{ $post->category->title }}</span></div>
+                                                        <div class="date"><span>{{ $post->category->title }}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-2 mb-sm-0 me-3">
