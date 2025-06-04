@@ -20,7 +20,7 @@ class WelcomeController extends Controller
             }
         ])->get();
 
-        $mainBanner = Post::where('status', 1)->where('is_banner', 1)->inRandomOrder()->first();
+        $mainBanner = Post::where('status', 1)->where('is_banner', 1)->first();
         $othersBanner = Post::where('status', 1)->inRandomOrder()->limit(2)->get();
         $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         return view('welcome', compact('posts', 'categories', 'latestPosts', 'mainBanner', 'othersBanner'));

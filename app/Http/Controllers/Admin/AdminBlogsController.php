@@ -115,6 +115,11 @@ class AdminBlogsController extends Controller
                 }
             }
 
+            // If is_banner is checked set other posts is_banner to 0
+            if ($request->has('is_banner')) {
+                Post::where('is_banner', 1)->update(['is_banner' => 0]);
+            }
+
             $post->meta_title = $request->meta_title;
             $post->meta_desc = $request->meta_desc;
 
@@ -125,6 +130,8 @@ class AdminBlogsController extends Controller
             }
 
             $post->status = $request->status;
+            $post->is_banner = $request->has('is_banner') ? 1 : 0;
+
             $post->save();
             return redirect()->route('admin.blog.create')->with('success', 'Blog post created successfully!');
         } catch (\Exception $e) {
@@ -183,12 +190,17 @@ class AdminBlogsController extends Controller
             }
         }
 
+        // If is_banner is checked set other posts is_banner to 0
+        if ($request->has('is_banner')) {
+            Post::where('is_banner', 1)->update(['is_banner' => 0]);
+        }
+
         $post->meta_title = $request->meta_title;
         $post->meta_desc = $request->meta_desc;
         $post->meta_keywords = implode(',', $request->input('meta_keywords', []));
 
         $post->status = $request->status;
-
+        $post->is_banner = $request->has('is_banner') ? 1 : 0;
         $post->save();
 
         return redirect()->route('admin.blogs.index')->with('success', 'Blog post updated successfully!');

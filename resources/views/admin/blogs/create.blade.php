@@ -153,6 +153,16 @@
                                         <option value="1">Published</option>
                                     </select>
                                 </div>
+                                {{-- Main banner checkbox  --}}
+                                <div class="form-group">
+                                    <label for="is_banner">Set as Banner</label>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="is_banner" name="is_banner"
+                                            value="1" {{ old('is_banner') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="is_banner"> Yes</label>
+                                    </div>
+                                </div>
+
 
                             </div>
                             <!-- /.card-body -->

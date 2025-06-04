@@ -94,7 +94,7 @@
                                             <th>Category</th>
                                             <th>Desc</th>
                                             <th>Author</th>
-                                            <th>Date</th>
+                                            {{-- <th>Date</th> --}}
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -108,7 +108,7 @@
                                                 <td>{!! Str::limit($post->description, 50) !!}</td>
 
                                                 <td>{{ $post->user->name }}</td>
-                                                <td>{{ $post->created_at->format('d M, Y') }}</td>
+                                                {{-- <td>{{ $post->created_at->format('d M, Y') }}</td> --}}
                                                 <td>
                                                     <a href="{{ route('admin.blog.show', $post->id) }}"
                                                         class="btn btn-primary btn-sm">View</a>
@@ -129,7 +129,7 @@
                                             <th>Category</th>
                                             <th>desc</th>
                                             <th>Author</th>
-                                            <th>Date</th>
+                                            {{-- <th>Date</th> --}}
                                             <th>Actions</th>
                                         </tr>
                                     </tfoot>
