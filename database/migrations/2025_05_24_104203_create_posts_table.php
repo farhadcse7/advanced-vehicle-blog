@@ -25,6 +25,7 @@ return new class extends Migration
             $table->text('meta_desc')->nullable();
             $table->text('meta_keywords')->nullable();
             $table->integer('status')->default(0);
+            $table->integer('is_banner')->default(0);
             $table->timestamps();
         });
     }

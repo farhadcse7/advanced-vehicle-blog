@@ -3,6 +3,51 @@
 @section('description', getSiteSettings()->meta_desc ?: 'meta_desc')
 @section('keywords', getSiteSettings()->meta_keywords ?: 'meta_keywords')
 @section('content')
+    <!-- ======================= slider section  ============================ -->
+    <div class="slider_section bg-white overflow-hidden pt-4 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Left side large banner -->
+                @if ($mainBanner)
+                    <div class="col-lg-8">
+                        <a href="{{ route('blog.show', $mainBanner->slug) }}" class="banner">
+                            <div class="banner-left">
+                                <img src="{{ asset('assets/images/blog/' . $mainBanner->img) }}" class="img-fluid w-100"
+                                    alt="{{ $mainBanner->title }}">
+                                <div class="banner-content">
+                                    <h2>{{ $mainBanner->title }}</h2>
+                                    <p>{!! Str::limit($mainBanner->description, 100) !!}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endif
+
+                <!-- Right side small banners -->
+                <div class="col-lg-4">
+                    <div class="row">
+                        @foreach ($othersBanner as $banner)
+                            <div class="col-12 mb-3">
+                                <a href="{{ route('blog.show', $banner->slug) }}" class="banner">
+                                    <div class="banner-small">
+                                        <img src="{{ asset('assets/images/blog/' . $banner->img) }}" class="img-fluid w-100"
+                                            alt="{{ $banner->title }}">
+                                        <div class="banner-content">
+                                            <h3>{{ $banner->title }}</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- End of right side small banners -->
+            </div>
+
+        </div>
+    </div>
+    <!-- ======================= slider End  ============================ -->
+
     <!-- ======================= Blog Start  ============================ -->
     <div class="blog_section bg-white overflow-hidden pt-4 pb-4">
         <div class="container">
@@ -63,7 +108,8 @@
                                         </div>
                                         <hr>
                                         <div class="card-footer mt-2 bg-transparent border-0 blog_content p-0">
-                                            <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read More</a>
+                                            <a class="learn_more" href="{{ route('blog.show', $post->slug) }}">Read
+                                                More</a>
                                         </div>
                                     </div>
                                 </div>
