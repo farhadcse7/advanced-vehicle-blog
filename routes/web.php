@@ -68,6 +68,7 @@ Route::get('/admin/category/delete/{id}', [AdminCategoriesController::class, 'de
 //advertisements routes
 Route::get('/admin/advertisements', [AdminAdvertisementController::class, 'index'])->name('admin.advertisements.index');
 Route::get('/admin/advertisement/create', [AdminAdvertisementController::class, 'create'])->name('admin.advertisement.create');
+Route::post('/admin/advertisement/store', [AdminAdvertisementController::class, 'store'])->name('admin.advertisement.store');
 Route::get('/admin/advertisement/edit/{id}', [AdminAdvertisementController::class, 'edit'])->name('admin.advertisement.edit');
 Route::get('/admin/advertisement/delete/{id}', [AdminAdvertisementController::class, 'delete'])->name('admin.advertisement.delete');
 

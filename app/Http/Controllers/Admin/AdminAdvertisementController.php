@@ -34,7 +34,8 @@ class AdminAdvertisementController extends Controller
 
     public function create()
     {
-        return view('admin.advertisement.create');
+        $title = "Create Advertisement";
+        return view('admin.advertisements.create', compact('title'));
     }
 
     public function show($id)
@@ -53,37 +54,22 @@ class AdminAdvertisementController extends Controller
     {
         $request->validate([
 
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
-            'description' => 'required|string',
+            'name' => 'required|string|max:255',
+            'link' => 'required|string|max:255',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'meta_title' => 'nullable|string|max:60',
-            'meta_desc' => 'nullable|string|max:160',
-            'meta_keywords' => 'nullable|array',
             'status' => 'required',
         ]);
 
         try {
             $advertisement = new Advertisement();
-            $advertisement->title = $request->title;
-
-            $slugUniqueCheck = Advertisement::where('slug', $request->slug)->count();
-            if ($slugUniqueCheck > 0) {
-                $advertisement->slug = $request->slug . '-' . uniqid();
-            } else {
-                $advertisement->slug = $request->slug;
-            }
-
-            $advertisement->category_id = $request->category_id;
-            $advertisement->user_id = $request->user_id;
-            $advertisement->description = $request->description;
+            $advertisement->name = $request->name;
+            $advertisement->link = $request->link;
+            $advertisement->status = $request->status;
 
             if ($request->hasFile('img')) {
                 $filename = uniqid() . '_' . $request->file('img')->getClientOriginalName();
 
-                $destinationPath = public_path('assets/images/blog/');
+                $destinationPath = public_path('assets/images/banner/');
 
                 if (!File::exists($destinationPath)) {
                     File::makeDirectory($destinationPath, 0755, true);
@@ -96,33 +82,14 @@ class AdminAdvertisementController extends Controller
                 }
             }
 
-            // If is_banner is checked set other posts is_banner to 0
-            if ($request->has('is_banner')) {
-                Advertisement::where('is_banner', 1)->update(['is_banner' => 0]);
-            }
-
-            $advertisement->meta_title = $request->meta_title;
-            $advertisement->meta_desc = $request->meta_desc;
-
-            if ($request->has('meta_keywords')) {
-                $advertisement->meta_keywords = implode(',', $request->meta_keywords);
-            } else {
-                $advertisement->meta_keywords = '';
-            }
-
-            $advertisement->status = $request->status;
-            $advertisement->is_banner = $request->has('is_banner') ? 1 : 0;
-
             $advertisement->save();
-            return redirect()->route('admin.advertisement.create')->with('success', 'Blog post created successfully!');
+
+            return redirect()->route('admin.advertisement.create')->with('success', 'Advertisement banner created successfully!');
         } catch (\Exception $e) {
             // dd($e);
             \Log::error('Error creating advertisement Advertisement:' . $e->getMessage());
-            return redirect()->route('admin.advertisement.create')->with('error', 'There was an error creating the blog post.');
+            return redirect()->route('admin.advertisement.create')->with('error', 'There was an error creating the Advertisement banner.');
         }
-
-        $users = User::all();
-        return view('admin.advertisement.create', compact('categories', 'users'));
     }
 
     public function update(Request $request, $id)
