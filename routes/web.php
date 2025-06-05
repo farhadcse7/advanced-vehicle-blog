@@ -42,6 +42,7 @@ Route::get('/about', [PagesController::class, 'about'])->name('about.index');
 Route::get('/disclaimer', [PagesController::class, 'disclaimer'])->name('disclaimer.index');
 Route::get('/admin/advertisement/clicks/{id}', [PagesController::class, 'clickCount'])->name('advertisement.clicks');
 Route::get('/sitemap', [PagesController::class, 'sitemap'])->name('sitemap.index');
+Route::get('/sitemap.xml', [PagesController::class, 'xmlsitemap'])->name('sitemap.xml');
 
 // Admin routes
 Auth::routes(); //auth routes from laravel/ui

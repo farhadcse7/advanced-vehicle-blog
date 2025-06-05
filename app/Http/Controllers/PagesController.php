@@ -39,4 +39,12 @@ class PagesController extends Controller
         $latestPosts = Post::where('status', 1)->latest()->limit(5)->get();
         return view('pages.sitemap', compact('categories', 'latestPosts'));
     }
+
+    //xmlsitemap
+    public function xmlsitemap()
+    {
+        $categories = Category::all();
+        return response()->view('pages.xmlsitemap', compact('categories'))
+            ->header('Content-Type', 'application/xml');
+    }
 }
