@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\Admin\AdminBlogsController;
 use App\Http\Controllers\Admin\AdminPagesController;
+use App\Http\Controllers\Admin\AdminRolesController;
 use App\Http\Controllers\Admin\AdminTermsController;
 use App\Http\Controllers\Admin\AdminPrivacyController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -83,6 +84,10 @@ Route::post('/admin/user/store', [AdminAuthenticationController::class, 'store']
 Route::get('/admin/user/edit/{id}', [AdminAuthenticationController::class, 'edit'])->name('admin.user.edit');
 Route::put('/admin/user/update/{id}', [AdminAuthenticationController::class, 'update'])->name('admin.user.update');
 Route::get('/admin/user/delete/{id}', [AdminAuthenticationController::class, 'delete'])->name('admin.user.delete');
+
+//roles & permissions routes
+Route::get('/admin/user/roles', [AdminRolesController::class, 'index'])->name('admin.users.roles');
+Route::get('/admin/user/role/create', [AdminRolesController::class, 'create'])->name('admin.users.role.create');
 
 //other pages
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
