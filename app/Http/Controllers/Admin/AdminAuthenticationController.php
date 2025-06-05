@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +35,8 @@ class AdminAuthenticationController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all(); // roles are fetched using spatie package
+        return view('admin.users.create', compact('roles'));
     }
 
 

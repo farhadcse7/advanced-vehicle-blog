@@ -66,13 +66,27 @@
                                         value="{{ old('email') }}" placeholder="Enter Email">
                                 </div>
 
-                                <div class="form-group">
+                                {{-- static database users table fetch roles used here  --}}
+                                {{-- <div class="form-group">
                                     <label for="role">Select Role <span class="text-danger">*</span></label>
                                     <select class="form-control" id="role" name="role_id">
                                         <option disabled {{ old('role_id') ? '' : 'selected' }}>Select Role</option>
                                         <option value="1" {{ old('role_id') == '1' ? 'selected' : '' }}>Super Admin
                                         </option>
                                         <option value="2" {{ old('role_id') == '2' ? 'selected' : '' }}>Editor</option>
+                                    </select>
+                                </div> --}}
+
+                                {{-- dynamic spatie roles table database fetch roles used here  --}}
+                                <div class="form-group">
+                                    <label for="role">Select Role <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="role" name="role_id">
+                                        <option disabled {{ old('role_id') ? '' : 'selected' }}>Select Role</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}"
+                                                {{ old('role_id') == $role->id ? 'selected' : '' }}>{{ $role->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
 
