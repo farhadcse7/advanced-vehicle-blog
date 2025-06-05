@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -143,21 +144,31 @@ class AdminAuthenticationController extends Controller
     public function delete($id)
     {
         try {
-            $post = Post::findOrFail($id);
+            $user = User::findOrFail($id);
 
-            if ($post->img) {
-                $imagePath = public_path('assets/images/blog/' . $post->img);
+            // Check if the user has associated posts -slow performance
+            if ($user->posts()->count() > 0) {
+                return redirect()->route('admin.users.index')->with('error', 'User cannot be deleted because they have associated posts.');
+            }
+
+            // Check if the user has associated posts -faster performance
+            // if ($user->posts()->exists()) {
+            //     return redirect()->route('admin.users.index')->with('error', 'User cannot be deleted because they have associated posts.');
+            // }
+
+            if ($user->img) {
+                $imagePath = public_path('assets/images/avatar/' . $user->img);
                 if (File::exists($imagePath)) {
                     File::delete($imagePath);
                 }
             }
 
-            $post->delete();
+            $user->delete();
 
-            return redirect()->route('admin.blogs.index')->with('success', 'Blog post deleted successfully!');
+            return redirect()->route('admin.users.index')->with('success', 'User is deleted successfully!');
         } catch (\Exception $e) {
-            \Log::error('Error deleting blog post: ' . $e->getMessage());
-            return redirect()->route('admin.blogs.index')->with('error', 'There was an error deleting the blog post.');
+            \Log::error('Error deleting User: ' . $e->getMessage());
+            return redirect()->route('admin.users.index')->with('error', 'There was an error deleting the User.');
         }
     }
 }
