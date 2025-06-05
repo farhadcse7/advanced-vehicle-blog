@@ -109,6 +109,7 @@
                                     <li><a href="{{ route('disclaimer.index') }}">Disclaimer</a></li>
                                     <li><a href="{{ route('privacy.index') }}">Privacy Policy</a></li>
                                     <li><a href="{{ route('terms.index') }}">Terms Conditions</a></li>
+                                    <li><a href="{{ route('sitemap.index') }}">Sitemap</a></li>
                                 </ul>
                             </div>
                         </div>

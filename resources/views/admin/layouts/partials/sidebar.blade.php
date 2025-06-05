@@ -15,7 +15,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-list"></i>
                         <p>
                             Category
                             <i class="right fas fa-angle-left"></i>
@@ -61,7 +61,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-file-alt"></i>
                         <p>
                             Pages
                             <i class="right fas fa-angle-left"></i>
@@ -96,7 +96,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
                             Role & Permissions
                             <i class="right fas fa-angle-left"></i>
@@ -119,7 +119,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.contact.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-address-book"></i>
                         <p>
                             Contacts
                         </p>
@@ -127,7 +127,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.advertisements.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-bullhorn"></i>
                         <p>
                             Advertisement
                         </p>
@@ -135,7 +135,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('admin.settings.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Web Setting
                         </p>

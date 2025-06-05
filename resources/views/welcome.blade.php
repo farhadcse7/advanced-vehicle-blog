@@ -55,7 +55,7 @@
                 @foreach ($advertiseBanner as $ad)
                     <div class="row g-4">
                         <div class="col-12">
-                            <a target="_blank" href="{{ $ad->link ?? '#' }}">
+                            <a target="_blank" href="{{ route('advertisement.clicks', $ad->id) }}">
                                 <div class="ad-banner">
                                     <img src="{{ asset('assets/images/banner/' . $ad->img) }}" alt="{{ $ad->name }}"
                                         class="ad-image">

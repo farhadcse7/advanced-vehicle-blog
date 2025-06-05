@@ -40,6 +40,8 @@ Route::get('/privacy', [PrivacyController::class, 'index'])->name('privacy.index
 Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');
 Route::get('/about', [PagesController::class, 'about'])->name('about.index');
 Route::get('/disclaimer', [PagesController::class, 'disclaimer'])->name('disclaimer.index');
+Route::get('/admin/advertisement/clicks/{id}', [PagesController::class, 'clickCount'])->name('advertisement.clicks');
+Route::get('/sitemap', [PagesController::class, 'sitemap'])->name('sitemap.index');
 
 // Admin routes
 Auth::routes(); //auth routes from laravel/ui
