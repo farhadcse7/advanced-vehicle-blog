@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class AdminAuthenticationController extends Controller
 {
@@ -34,7 +36,7 @@ class AdminAuthenticationController extends Controller
         return view('admin.users.create');
     }
 
-  
+
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -45,79 +47,50 @@ class AdminAuthenticationController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
-
-            'title' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
-            'description' => 'required|string',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'password' => 'required',
+            'role_id' => 'required',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'meta_title' => 'nullable|string|max:60',
-            'meta_desc' => 'nullable|string|max:160',
-            'meta_keywords' => 'nullable|array',
             'status' => 'required',
         ]);
 
         try {
-            $post = new Post();
-            $post->title = $request->title;
-
-            $slugUniqueCheck = Post::where('slug', $request->slug)->count();
-            if ($slugUniqueCheck > 0) {
-                $post->slug = $request->slug . '-' . uniqid();
-            } else {
-                $post->slug = $request->slug;
-            }
-
-            $post->category_id = $request->category_id;
-            $post->user_id = $request->user_id;
-            $post->description = $request->description;
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            // $user->password = bcrypt($request->password);
+            // Hashing the password
+            $user->password = Hash::make($request->password);
+            $user->role_id = $request->role_id;
+            $user->status = $request->status;
 
             if ($request->hasFile('img')) {
                 $filename = uniqid() . '_' . $request->file('img')->getClientOriginalName();
 
-                $destinationPath = public_path('assets/images/blog/');
+                $destinationPath = public_path('assets/images/avatar/');
 
                 if (!File::exists($destinationPath)) {
                     File::makeDirectory($destinationPath, 0755, true);
                 }
 
                 if ($request->file('img')->move($destinationPath, $filename)) {
-                    $post->img = $filename;
+                    $user->img = $filename;
                 } else {
                     return response()->json(['error' => 'File upload failed'], 500);
                 }
             }
 
-            // If is_banner is checked set other posts is_banner to 0
-            if ($request->has('is_banner')) {
-                Post::where('is_banner', 1)->update(['is_banner' => 0]);
-            }
+            $user->save();
 
-            $post->meta_title = $request->meta_title;
-            $post->meta_desc = $request->meta_desc;
-
-            if ($request->has('meta_keywords')) {
-                $post->meta_keywords = implode(',', $request->meta_keywords);
-            } else {
-                $post->meta_keywords = '';
-            }
-
-            $post->status = $request->status;
-            $post->is_banner = $request->has('is_banner') ? 1 : 0;
-
-            $post->save();
-            return redirect()->route('admin.blog.create')->with('success', 'Blog post created successfully!');
+            return redirect()->route('admin.user.create')->with('success', 'User created successfully!');
         } catch (\Exception $e) {
             // dd($e);
-            \Log::error('Error creating blog post:' . $e->getMessage());
-            return redirect()->route('admin.blog.create')->with('error', 'There was an error creating the blog post.');
+            \Log::error('Error creating user:' . $e->getMessage());
+            return redirect()->route('admin.user.create')->with('error', 'There was an error creating the user.');
         }
-
-        $categories = Category::all();
-        $users = User::all();
-        return view('admin.blogs.create', compact('categories', 'users'));
     }
 
     public function update(Request $request, $id)
@@ -202,4 +175,3 @@ class AdminAuthenticationController extends Controller
         }
     }
 }
-
