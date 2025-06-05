@@ -79,8 +79,9 @@ Route::get('/admin/advertisement/delete/{id}', [AdminAdvertisementController::cl
 //authentication rotues
 Route::get('/admin/users', [AdminAuthenticationController::class, 'index'])->name('admin.users.index');
 Route::get('/admin/user/create', [AdminAuthenticationController::class, 'create'])->name('admin.user.create');
-Route::get('/admin/user/edit/{id}', [AdminAuthenticationController::class, 'edit'])->name('admin.user.edit');
 Route::post('/admin/user/store', [AdminAuthenticationController::class, 'store'])->name('admin.user.store');
+Route::get('/admin/user/edit/{id}', [AdminAuthenticationController::class, 'edit'])->name('admin.user.edit');
+Route::put('/admin/user/update/{id}', [AdminAuthenticationController::class, 'update'])->name('admin.user.update');
 Route::get('/admin/user/delete/{id}', [AdminAuthenticationController::class, 'delete'])->name('admin.user.delete');
 
 //other pages
