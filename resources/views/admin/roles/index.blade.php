@@ -65,8 +65,11 @@
                                             </td>
                                             <td>{{ $role->created_at ?? 'N/A' }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                <a href="{{ route('admin.role.edit', $role->id) }}"
+                                                    class="btn btn-info btn-sm">Edit</a>
+                                                <a onclick="return confirm('Are you really sure to delete?')"
+                                                    href="{{ route('admin.role.delete', $role->id) }}"
+                                                    class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

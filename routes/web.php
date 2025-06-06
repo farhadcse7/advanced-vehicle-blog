@@ -89,6 +89,9 @@ Route::get('/admin/user/delete/{id}', [AdminAuthenticationController::class, 'de
 Route::get('/admin/user/roles', [AdminRolesController::class, 'index'])->name('admin.users.roles');
 Route::get('/admin/user/role/create', [AdminRolesController::class, 'create'])->name('admin.users.role.create');
 Route::post('/admin/role/store', [AdminRolesController::class, 'store'])->name('admin.role.store');
+Route::get('/admin/role/edit/{id}', [AdminRolesController::class, 'edit'])->name('admin.role.edit');
+Route::put('/admin/role/update/{id}', [AdminRolesController::class, 'update'])->name('admin.role.update');
+Route::get('/admin/role/delete/{id}', [AdminRolesController::class, 'delete'])->name('admin.role.delete');
 
 //other pages
 Route::get('/admin/pages/privacy', [AdminPrivacyController::class, 'index'])->name('admin.pages.privacy');
