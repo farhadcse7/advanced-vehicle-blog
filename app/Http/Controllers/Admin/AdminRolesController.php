@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Spatie\Permission\Models\Permission;
 
 class AdminRolesController extends Controller
 {
@@ -30,7 +31,9 @@ class AdminRolesController extends Controller
 
     public function create()
     {
-        return view('admin.roles.create');
+        $permissions = Permission::all()->groupBy('group_name'); // Fetch all permissions using Spatie package
+        // dd($permissions);
+        return view('admin.roles.create', compact('permissions'));
     }
 
     public function show($id)

@@ -43,7 +43,8 @@ class AdminAuthenticationController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     public function store(Request $request)
@@ -100,6 +101,7 @@ class AdminAuthenticationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id, // Ensure unique email except for the current user
+            // 'email' => 'required|string|email|max:255|unique:users,email,' . $id, //also works
             'password' => 'nullable|string|min:3',
             'role_id' => 'required',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

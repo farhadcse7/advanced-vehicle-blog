@@ -34,13 +34,16 @@
                         <!-- form start -->
                         <form>
                             <div class="card-body">
-                                <input type="hidden" name="_token" value="pmBTZAqbqRo6T3m0Dw27bEmc8mzOCRGyBh97sJ49">
+                                {{-- <input type="hidden" name="_token" value="pmBTZAqbqRo6T3m0Dw27bEmc8mzOCRGyBh97sJ49"> --}}
+
+                                <!-- Role Name Input -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Role Name</label>
                                     <input value="" type="text" class="form-control" name="name"
                                         placeholder="Name" required>
                                 </div>
 
+                                <!-- All Permission Toggle -->
                                 <div class="mb-3">
                                     <div class="row">
                                         <div class="col-3">
@@ -55,227 +58,33 @@
 
                                 </div>
 
+                                <!-- Dynamic Permission Groups -->
                                 <div class="mb-3">
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="1management"
-                                                    onclick="CheckPermissionByGroup('role-1-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="1management"
-                                                    class="custom-control-label text-capitalize">admin</label>
+                                    @foreach ($permissions as $group => $groupPermissions)
+                                        <div class="row">
+                                            <!-- Group checkbox -->
+                                            <div class="col-3">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox" id="{{ $group }}management"
+                                                        onclick="CheckPermissionByGroup('role-{{ $group }}-management-checkbox',this)" value="2">
+                                                    <label for="{{ $group }}management" class="custom-control-label text-capitalize">{{ str_replace('-', ' ', $group) }}</label>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-9 role-1-management-checkbox">
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_1" value="admin.user.view">
-                                                <label for="permission_checkbox_1"
-                                                    class="custom-control-label">admin.user.view</label>
+                                            <!-- Individual permission checkboxes -->
+                                            <div class="col-9 role-{{ $group }}-management-checkbox">
+                                                @foreach ($groupPermissions as $permission)
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input name="permissions[]" class="custom-control-input" type="checkbox" id="permission_checkbox_{{ $permission->id }}"
+                                                            value="{{ $permission->name }}">
+                                                        <label for="permission_checkbox_{{ $permission->id }}" class="custom-control-label">{{ $permission->name }}</label>
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_2" value="admin.user.create">
-                                                <label for="permission_checkbox_2"
-                                                    class="custom-control-label">admin.user.create</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_3" value="admin.user.edit">
-                                                <label for="permission_checkbox_3"
-                                                    class="custom-control-label">admin.user.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_4" value="admin.user.delete">
-                                                <label for="permission_checkbox_4"
-                                                    class="custom-control-label">admin.user.delete</label>
-                                            </div>
+                                            <!-- Individual permission checkboxes end-->
                                         </div>
-
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="2management"
-                                                    onclick="CheckPermissionByGroup('role-2-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="2management"
-                                                    class="custom-control-label text-capitalize">category</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-9 role-2-management-checkbox">
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_13" value="admin.blog-category.view">
-                                                <label for="permission_checkbox_13"
-                                                    class="custom-control-label">admin.category.view</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_14" value="admin.blog-category.create">
-                                                <label for="permission_checkbox_14"
-                                                    class="custom-control-label">admin.category.create</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_15" value="admin.blog-category.edit">
-                                                <label for="permission_checkbox_15"
-                                                    class="custom-control-label">admin.category.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_16" value="admin.blog-category.delete">
-                                                <label for="permission_checkbox_16"
-                                                    class="custom-control-label">admin.category.delete</label>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="3management"
-                                                    onclick="CheckPermissionByGroup('role-3-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="3management"
-                                                    class="custom-control-label text-capitalize">blog-post</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-9 role-3-management-checkbox">
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_17" value="admin.blog-post.view">
-                                                <label for="permission_checkbox_17"
-                                                    class="custom-control-label">admin.blog-post.view</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_18" value="admin.blog-post.create">
-                                                <label for="permission_checkbox_18"
-                                                    class="custom-control-label">admin.blog-post.create</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_19" value="admin.blog-post.edit">
-                                                <label for="permission_checkbox_19"
-                                                    class="custom-control-label">admin.blog-post.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_20" value="admin.blog-post.delete">
-                                                <label for="permission_checkbox_20"
-                                                    class="custom-control-label">admin.blog-post.delete</label>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="5management"
-                                                    onclick="CheckPermissionByGroup('role-5-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="5management"
-                                                    class="custom-control-label text-capitalize">pages</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-9 role-5-management-checkbox">
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_121" value="admin.about.edit">
-                                                <label for="permission_checkbox_121"
-                                                    class="custom-control-label">admin.about.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_122" value="admin.disclaimer.edit">
-                                                <label for="permission_checkbox_122"
-                                                    class="custom-control-label">admin.disclaimer.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_148" value="admin.privacy.edit">
-                                                <label for="permission_checkbox_148"
-                                                    class="custom-control-label">admin.privacy.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_149" value="admin.terms.edit">
-                                                <label for="permission_checkbox_149"
-                                                    class="custom-control-label">admin.terms.edit</label>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="6management"
-                                                    onclick="CheckPermissionByGroup('role-6-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="6management"
-                                                    class="custom-control-label text-capitalize">contact</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="7management"
-                                                    onclick="CheckPermissionByGroup('role-7-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="7management"
-                                                    class="custom-control-label text-capitalize">advertisement</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-9 role-7-management-checkbox">
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_141" value="admin.advertisement.edit">
-                                                <label for="permission_checkbox_141"
-                                                    class="custom-control-label">admin.advertisement.edit</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_151" value="admin.advertisement.delete">
-                                                <label for="permission_checkbox_151"
-                                                    class="custom-control-label">admin.advertisement.delete</label>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-3">
-                                            <div class="custom-control custom-checkbox">
-                                                <input class="custom-control-input" type="checkbox" id="8management"
-                                                    onclick="CheckPermissionByGroup('role-8-management-checkbox',this)"
-                                                    value="2">
-                                                <label for="8management" class="custom-control-label text-capitalize">web
-                                                    settings</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-9 role-8-management-checkbox">
-                                            <div class="custom-control custom-checkbox">
-                                                <input name="permissions[]" class="custom-control-input" type="checkbox"
-                                                    id="permission_checkbox_5" value="admin.settings.edit">
-                                                <label for="permission_checkbox_5"
-                                                    class="custom-control-label">admin.settings.edit</label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <hr>
+                                    @endforeach
                                 </div>
                             </div>
                             <!-- /.card-body -->

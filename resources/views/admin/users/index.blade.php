@@ -66,7 +66,8 @@
                                             <td>{{ $user->email }}</td>
                                             <td><img src="{{ asset('assets/images/avatar/' . $user->img) }}" width="50"
                                                     height="50" alt="img"></td>
-                                            <td>{{ $user->role_id }}</td>
+                                            {{-- <td>{{ $user->role_id }}</td> --}}
+                                            <td>{{ $user->role->name }}</td>
                                             <td>{{ $user->created_at->format('d M, Y') }}</td>
                                             <td>
                                                 <a href="{{ route('admin.user.edit', $user->id) }}"

@@ -68,7 +68,8 @@
                                         value="{{ old('email', $user->email) }}" placeholder="Enter Email">
                                 </div>
 
-                                <div class="form-group">
+                                {{-- static database users table fetch roles used here  --}}
+                                {{-- <div class="form-group">
                                     <label for="role">Select Role <span class="text-danger">*</span></label>
                                     <select class="form-control" id="role" name="role_id">
                                         <option value="1"
@@ -78,8 +79,20 @@
                                             {{ old('role_id', $user->role_id) == '2' ? 'selected' : '' }}>Editor
                                         </option>
                                     </select>
-                                </div>
+                                </div> --}}
 
+                                {{-- dynamic spatie roles table database fetch roles used here  --}}
+                                <div class="form-group">
+                                    <label for="role">Select Role <span class="text-danger">*</span></label>
+                                    <select class="form-control" id="role" name="role_id">
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}"
+                                                {{ old('role_id', $user->role_id) == $role->id ? 'selected' : '' }}>
+                                                {{ $role->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                                 <div class="form-group">
                                     <label for="avatar">Post Image <span class="text-danger">(Recommend size 100x100px
