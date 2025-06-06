@@ -18,7 +18,16 @@
         </div>
     </div>
     <!-- /.content-header -->
-
+    @if (session('success'))
+        <div class="alert alert-success m-2">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="alert alert-danger m-2">
+            {{ session('error') }}
+        </div>
+    @endif
     <!-- Main content -->
     <div class="content">
         <div class="container-fluid">
@@ -44,83 +53,25 @@
                                 </thead>
                                 <tbody>
                                     <!-- Demo data rows -->
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Super Admin</td>
-                                        <td><span class="badge badge-primary">Post List</span>, <span
-                                                class="badge badge-primary">Post Create</span></td>
-                                        <td>2024-07-01</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info btn-sm">Edit</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
+                                    @foreach ($roles as $role)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $role->name }}</td>
+                                            <!-- spatie implementation -->
+                                            <td>
+                                                @foreach ($role->permissions as $permission)
+                                                    <span class="badge badge-primary">{{ $permission->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td>{{ $role->created_at ?? 'N/A' }}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-info btn-sm">Edit</a>
+                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+
                                 </tbody>
 
                                 <tfoot>

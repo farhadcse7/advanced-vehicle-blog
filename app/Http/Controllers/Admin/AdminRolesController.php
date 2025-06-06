@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 
@@ -25,8 +26,8 @@ class AdminRolesController extends Controller
      */
     public function index()
     {
-        // $title = "Advertisement List";
-        return view('admin.roles.index');
+        $roles = Role::with('permissions')->get(); // Fetch all roles with their permissions using Spatie package
+        return view('admin.roles.index', compact('roles'));
     }
 
     public function create()
@@ -52,41 +53,23 @@ class AdminRolesController extends Controller
     {
         $request->validate([
 
-            'name' => 'required|string|max:255',
-            'link' => 'required|string|max:255',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required',
+            'name' => 'required|string|unique:roles,name',
+            'permissions' => 'nullable|array',
+            'permissions.*' => 'string|exists:permissions,name',
         ]);
 
         try {
-            $advertisement = new Advertisement();
-            $advertisement->name = $request->name;
-            $advertisement->link = $request->link;
-            $advertisement->status = $request->status;
 
-            if ($request->hasFile('img')) {
-                $filename = uniqid() . '_' . $request->file('img')->getClientOriginalName();
+            $role = Role::create(['name' => $request->name]); //spatie implementation
 
-                $destinationPath = public_path('assets/images/banner/');
-
-                if (!File::exists($destinationPath)) {
-                    File::makeDirectory($destinationPath, 0755, true);
-                }
-
-                if ($request->file('img')->move($destinationPath, $filename)) {
-                    $advertisement->img = $filename;
-                } else {
-                    return response()->json(['error' => 'File upload failed'], 500);
-                }
+            // Assign selected permissions
+            if ($request->has('permissions')) {
+                $role->syncPermissions($request->permissions); //spatie implementation
             }
 
-            $advertisement->save();
-
-            return redirect()->route('admin.advertisement.create')->with('success', 'Advertisement banner created successfully!');
+            return redirect()->route('admin.users.roles')->with('success', 'Role created successfully!');
         } catch (\Exception $e) {
-            // dd($e);
-            \Log::error('Error creating advertisement Advertisement:' . $e->getMessage());
-            return redirect()->route('admin.advertisement.create')->with('error', 'There was an error creating the Advertisement banner.');
+            return redirect()->route('admin.users.roles')->with('error', 'There was an error creating the role: ' . $e->getMessage());
         }
     }
 

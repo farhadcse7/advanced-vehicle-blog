@@ -32,7 +32,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form action="{{ route('admin.role.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 {{-- <input type="hidden" name="_token" value="pmBTZAqbqRo6T3m0Dw27bEmc8mzOCRGyBh97sJ49"> --}}
 
