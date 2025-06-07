@@ -87,6 +87,12 @@ class AdminAuthenticationController extends Controller
 
             $user->save();
 
+            //assign role to Table: model_has_permissions
+            $role = Role::findById($request->role_id);
+            $roleName = $role->name;
+            $user->assignRole($roleName);
+
+
             return redirect()->route('admin.user.create')->with('success', 'User created successfully!');
         } catch (\Exception $e) {
             // dd($e);
@@ -141,6 +147,11 @@ class AdminAuthenticationController extends Controller
         }
 
         $user->save();
+
+        //asign role to Table: model_has_roles
+        $role = Role::findById($request->role_id);
+        $roleName = $role->name;
+        $user->syncRoles($roleName);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully!');
     }
