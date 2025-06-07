@@ -20,7 +20,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-list"></i>
                             <p>
-                                Category
+                                Blog Categories
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -51,7 +51,7 @@
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
-                                Blog
+                                Blog Posts
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -125,36 +125,37 @@
                 @endcanany
 
                 {{-- Role & Permissions --}}
-                {{-- @canany(['admin.user.view', 'admin.user.create', 'admin.user.edit', 'admin.user.delete']) --}}
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            Role & Permissions
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        @can('admin.user.view')
-                            {{-- @can('admin.users.index') --}}
-                            <li class="nav-item">
-                                <a href="{{ route('admin.users.index') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Admins</p>
-                                </a>
-                            </li>
-                        @endcan
-                        @can('admin.users.roles')
-                            <li class="nav-item">
-                                <a href="{{ route('admin.users.roles') }}" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Admin Roles</p>
-                                </a>
-                            </li>
-                        @endcan
-                    </ul>
-                </li>
-                {{-- @endcanany --}}
+                @if (auth()->user()->can('admin.user.view') || auth()->user()->can('admin.users.roles'))
+                    {{-- @if (auth()->user()->can('admin.user.view') && auth()->user()->can('admin.users.roles')) --}}
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p>
+                                Role & Permissions
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @can('admin.user.view')
+                                {{-- @can('admin.users.index') --}}
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Admins</p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('admin.users.roles')
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.users.roles') }}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Admin Roles</p>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.contact.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-address-book"></i>

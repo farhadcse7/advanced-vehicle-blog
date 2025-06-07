@@ -64,8 +64,11 @@ class AdminAuthenticationController extends Controller
             $user->name = $request->name;
             $user->email = $request->email;
             // $user->password = bcrypt($request->password);
-            // Hashing the password
-            $user->password = Hash::make($request->password);
+            if ($request->password == 'password') {
+                // Hashing the password
+                $user->password = Hash::make($request->password);
+            }
+
             $user->role_id = $request->role_id;
             $user->status = $request->status;
 
@@ -116,8 +119,8 @@ class AdminAuthenticationController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        // Only update the password if it's provided
-        if ($request->filled('password')) {
+        if ($request->password == 'password') {
+            // Hashing the password
             $user->password = Hash::make($request->password);
         }
         $user->role_id = $request->role_id;
