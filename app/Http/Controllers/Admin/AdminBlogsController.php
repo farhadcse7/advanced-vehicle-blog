@@ -19,6 +19,10 @@ class AdminBlogsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:admin.blog-post.view')->only(['index', 'show']); //or can also add into individual route
+        $this->middleware('can:admin.blog-post.create')->only('create');
+        $this->middleware('can:admin.blog-post.edit')->only('edit');
+        $this->middleware('can:admin.blog-post.delete')->only('delete');
     }
 
     /**

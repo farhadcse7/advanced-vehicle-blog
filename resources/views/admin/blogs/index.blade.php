@@ -85,13 +85,19 @@
                                                 {{ $post->status == 1 ? 'Published' : 'Draft' }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('admin.blog.show', $post->id) }}"
-                                                    class="btn btn-primary btn-sm">View</a>
-                                                <a href="{{ route('admin.blog.edit', $post->id) }}"
-                                                    class="btn btn-info btn-sm">Edit</a>
-                                                <a onclick="return confirm('Are you really sure to delete ?')"
-                                                    href="{{ route('admin.blog.delete', $post->id) }}"
-                                                    class="btn btn-danger btn-sm">Delete</a>
+                                                @can('admin.blog-post.view')
+                                                    <a href="{{ route('admin.blog.show', $post->id) }}"
+                                                        class="btn btn-primary btn-sm">View</a>
+                                                @endcan
+                                                @can('admin.blog-post.view')
+                                                    <a href="{{ route('admin.blog.edit', $post->id) }}"
+                                                        class="btn btn-info btn-sm">Edit</a>
+                                                @endcan
+                                                @can('admin.blog-post.delete')
+                                                    <a onclick="return confirm('Are you really sure to delete ?')"
+                                                        href="{{ route('admin.blog.delete', $post->id) }}"
+                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                @endcan
 
                                             </td>
                                         </tr>

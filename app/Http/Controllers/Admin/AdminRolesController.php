@@ -17,6 +17,10 @@ class AdminRolesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:admin.users.roles')->only('index');
+        $this->middleware('can:admin.users.role.create')->only('create');
+        $this->middleware('can:admin.role.edit')->only('edit');
+        $this->middleware('can:admin.role.delete')->only('delete');
     }
 
     /**

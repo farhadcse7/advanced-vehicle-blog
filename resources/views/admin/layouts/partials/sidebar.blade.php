@@ -156,16 +156,19 @@
                         </ul>
                     </li>
                 @endif
-                <li class="nav-item">
-                    <a href="{{ route('admin.contact.index') }}" class="nav-link">
-                        <i class="nav-icon fas fa-address-book"></i>
-                        <p>
-                            Contacts
-                        </p>
-                    </a>
-                </li>
+                {{-- Contacts --}}
+                @can('admin.contact.index')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.contact.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-address-book"></i>
+                            <p>
+                                Contacts
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 {{-- Advertisement --}}
-                @can('admin.advertisement.edit')
+                @can('admin.advertisement.view')
                     <li class="nav-item">
                         <a href="{{ route('admin.advertisements.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-bullhorn"></i>

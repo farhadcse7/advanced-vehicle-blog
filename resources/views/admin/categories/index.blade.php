@@ -64,14 +64,19 @@
                                             <td>{{ $category->slug }}</td>
                                             <td>{{ $category->created_at->format('d M, Y') }}</td>
                                             <td>
-                                                <a href="{{ route('admin.category.show', $category->id) }}"
-                                                    class="btn btn-primary btn-sm">View</a>
-                                                <a href="{{ route('admin.category.edit', $category->id) }}"
-                                                    class="btn btn-info btn-sm">Edit</a>
-                                                <a onclick="return confirm('Are you really sure to delete ?')"
-                                                    href="{{ route('admin.category.delete', $category->id) }}"
-                                                    class="btn btn-danger btn-sm">Delete</a>
-                                            </td>
+                                                @can('admin.blog-category.view')
+                                                    <a href="{{ route('admin.category.show', $category->id) }}"
+                                                        class="btn btn-primary btn-sm">View</a>
+                                                @endcan
+                                                @can('admin.blog-category.edit')
+                                                    <a href="{{ route('admin.category.edit', $category->id) }}"
+                                                        class="btn btn-info btn-sm">Edit</a>
+                                                @endcan
+                                                @can('admin.blog-category.delete')
+                                                    <a onclick="return confirm('Are you really sure to delete ?')"
+                                                        href="{{ route('admin.category.delete', $category->id) }}"
+                                                        class="btn btn-danger btn-sm">Delete</a>
+                                                @endcan
                                             </td>
                                         </tr>
                                     @endforeach

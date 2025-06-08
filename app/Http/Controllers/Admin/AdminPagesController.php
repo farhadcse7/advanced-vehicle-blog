@@ -17,6 +17,9 @@ class AdminPagesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:admin.contact.index')->only('contact');
+        $this->middleware('can:admin.about.edit')->only('about');
+        $this->middleware('can:admin.disclaimer.edit')->only('disclaimer');
     }
 
     public function about()

@@ -18,6 +18,9 @@ class AdminAdvertisementController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:admin.advertisement.view')->only(['index', 'create']);
+        $this->middleware('can:admin.advertisement.delete')->only('delete');
+        $this->middleware('can:admin.advertisement.edit')->only('edit');
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -17,6 +18,7 @@ class AdminSettingsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:admin.settings.edit')->only('index');
     }
 
     /**

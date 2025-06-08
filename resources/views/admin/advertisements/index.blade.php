@@ -41,6 +41,18 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
+                            @php
+                                // built in php method for checking permissions
+                                // $hasActions =
+                                //     auth()->user()->can('admin.advertisement.edit') ||
+                                //     auth()->user()->can('admin.advertisement.delete');
+
+                                //Spatie method for checking permissions
+                                $hasActions = auth()
+                                    ->user()
+                                    ->hasAnyPermission(['admin.advertisement.edit', 'admin.advertisement.delete']);
+                            @endphp
+
                             <table id="postlist" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -51,7 +63,9 @@
                                         <th>Img</th>
                                         <th>Date</th>
                                         <th>Status</th>
-                                        <th>Actions</th>
+                                        @if ($hasActions)
+                                            <th>Actions</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -69,14 +83,19 @@
                                             <td class="{{ $advertisement->status == 1 ? 'text-success' : 'text-danger' }}">
                                                 {{ $advertisement->status == 1 ? 'Active' : 'Inactive' }}
                                             </td>
-                                            <td>
-                                                <a href="{{ route('admin.advertisement.edit', $advertisement->id) }}"
-                                                    class="btn btn-info btn-sm">Edit</a>
-                                                <a onclick="return confirm('Are you really sure to delete ?')"
-                                                    href="{{ route('admin.advertisement.delete', $advertisement->id) }}"
-                                                    class="btn btn-danger btn-sm">Delete</a>
-
-                                            </td>
+                                            @if ($hasActions)
+                                                <td>
+                                                    @can('admin.advertisement.edit')
+                                                        <a href="{{ route('admin.advertisement.edit', $advertisement->id) }}"
+                                                            class="btn btn-info btn-sm">Edit</a>
+                                                    @endcan
+                                                    @can('admin.advertisement.delete')
+                                                        <a onclick="return confirm('Are you really sure to delete ?')"
+                                                            href="{{ route('admin.advertisement.delete', $advertisement->id) }}"
+                                                            class="btn btn-danger btn-sm">Delete</a>
+                                                    @endcan
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -89,7 +108,9 @@
                                         <th>Img</th>
                                         <th>Date</th>
                                         <th>Status</th>
-                                        <th>Actions</th>
+                                        @if ($hasActions)
+                                            <th>Actions</th>
+                                        @endif
                                     </tr>
                                 </tfoot>
                             </table>
