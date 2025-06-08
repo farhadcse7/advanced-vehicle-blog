@@ -7,7 +7,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 {{-- Dashboard (show to all) --}}
                 <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link">
+                    <a href="{{ route('home') }}" class="nav-link {{ Route::is('home') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Dashboard
@@ -16,8 +16,9 @@
                 </li>
                 {{-- Category --}}
                 @canany(['admin.blog-category.view', 'admin.blog-category.create'])
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ Route::is('admin.categories.*', 'admin.category.create') ? 'menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ Route::is('admin.categories.*', 'admin.category.create') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-list"></i>
                             <p>
                                 Blog Categories
@@ -27,7 +28,8 @@
                         <ul class="nav nav-treeview">
                             @can('admin.blog-category.view')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                                    <a href="{{ route('admin.categories.index') }}"
+                                        class="nav-link {{ Route::is('admin.categories.index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Category List</p>
                                     </a>
@@ -35,7 +37,8 @@
                             @endcan
                             @can('admin.blog-category.create')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.category.create') }}" class="nav-link">
+                                    <a href="{{ route('admin.category.create') }}"
+                                        class="nav-link {{ Route::is('admin.category.create') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add Category</p>
                                     </a>
@@ -47,8 +50,9 @@
 
                 {{-- Blog --}}
                 @canany(['admin.blog-post.view', 'admin.blog-post.create'])
-                    <li class="nav-item menu-open">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ Route::is('admin.blogs.*', 'admin.blog.create') ? 'menu-open' : '' }}">
+                        <a href="#"
+                            class="nav-link {{ Route::is('admin.blogs.*', 'admin.blog.create') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Blog Posts
@@ -58,15 +62,18 @@
                         <ul class="nav nav-treeview">
                             @can('admin.blog-post.view')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.blogs.index') }}" class="nav-link">
+                                    <a href="{{ route('admin.blogs.index') }}"
+                                        class="nav-link {{ Route::is('admin.blogs.index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Post List</p>
                                     </a>
                                 </li>
                             @endcan
+
                             @can('admin.blog-post.create')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.blog.create') }}" class="nav-link">
+                                    <a href="{{ route('admin.blog.create') }}"
+                                        class="nav-link {{ Route::is('admin.blog.create') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add New Post</p>
                                     </a>
@@ -76,11 +83,12 @@
                     </li>
                 @endcanany
 
+
                 {{-- Pages --}}
                 @canany(['admin.about.edit', 'admin.disclaimer.edit', 'admin.privacy.edit', 'admin.terms.edit'])
 
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ Route::is('admin.pages.*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Route::is('admin.pages.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-file-alt"></i>
                             <p>
                                 Pages
@@ -89,8 +97,8 @@
                         </a>
                         <ul class="nav nav-treeview">
                             @can('admin.about.edit')
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.pages.about') }}" class="nav-link">
+                                <li class="nav-item"><a href="{{ route('admin.pages.about') }}"
+                                        class="nav-link {{ Route::is('admin.pages.about') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>About Us</p>
                                     </a>
@@ -98,7 +106,8 @@
                             @endcan
                             @can('admin.disclaimer.edit')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.pages.disclaimer') }}" class="nav-link">
+                                    <a href="{{ route('admin.pages.disclaimer') }}"
+                                        class="nav-link {{ Route::is('admin.pages.disclaimer') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Disclarimers</p>
                                     </a>
@@ -106,7 +115,8 @@
                             @endcan
                             @can('admin.privacy.edit')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.pages.privacy') }}" class="nav-link">
+                                    <a href="{{ route('admin.pages.privacy') }}"
+                                        class="nav-link {{ Route::is('admin.pages.privacy') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Privacy Policy</p>
                                     </a>
@@ -114,7 +124,8 @@
                             @endcan
                             @can('admin.terms.edit')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.pages.terms') }}" class="nav-link ">
+                                    <a href="{{ route('admin.pages.terms') }}"
+                                        class="nav-link {{ Route::is('admin.pages.terms') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Terms & Conditions</p>
                                     </a>
@@ -127,8 +138,8 @@
                 {{-- Role & Permissions --}}
                 @if (auth()->user()->can('admin.user.view') || auth()->user()->can('admin.users.roles'))
                     {{-- @if (auth()->user()->can('admin.user.view') && auth()->user()->can('admin.users.roles')) --}}
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item {{ Route::is('admin.users.*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ Route::is('admin.users.*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
                                 Role & Permissions
@@ -139,7 +150,8 @@
                             @can('admin.user.view')
                                 {{-- @can('admin.users.index') --}}
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.users.index') }}" class="nav-link">
+                                    <a href="{{ route('admin.users.index') }}"
+                                        class="nav-link {{ Route::is('admin.users.index') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Admins</p>
                                     </a>
@@ -147,7 +159,8 @@
                             @endcan
                             @can('admin.users.roles')
                                 <li class="nav-item">
-                                    <a href="{{ route('admin.users.roles') }}" class="nav-link">
+                                    <a href="{{ route('admin.users.roles') }}"
+                                        class="nav-link {{ Route::is('admin.users.roles') ? 'active' : '' }}">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Admin Roles</p>
                                     </a>
@@ -159,7 +172,8 @@
                 {{-- Contacts --}}
                 @can('admin.contact.index')
                     <li class="nav-item">
-                        <a href="{{ route('admin.contact.index') }}" class="nav-link">
+                        <a href="{{ route('admin.contact.index') }}"
+                            class="nav-link {{ Route::is('admin.contact.index') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-address-book"></i>
                             <p>
                                 Contacts
@@ -170,7 +184,8 @@
                 {{-- Advertisement --}}
                 @can('admin.advertisement.view')
                     <li class="nav-item">
-                        <a href="{{ route('admin.advertisements.index') }}" class="nav-link">
+                        <a href="{{ route('admin.advertisements.index') }}"
+                            class="nav-link {{ Route::is('admin.advertisements.index') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-bullhorn"></i>
                             <p>
                                 Advertisement
@@ -181,7 +196,8 @@
                 {{-- Web Setting --}}
                 @can('admin.settings.edit')
                     <li class="nav-item">
-                        <a href="{{ route('admin.settings.index') }}" class="nav-link">
+                        <a href="{{ route('admin.settings.index') }}"
+                            class="nav-link {{ Route::is('admin.settings.index') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
                                 Web Setting

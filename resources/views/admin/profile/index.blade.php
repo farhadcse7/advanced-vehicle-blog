@@ -38,21 +38,21 @@
                                         <div class="form-group">
                                             <label for="fullname">Full Name</label>
                                             <input type="text" required class="form-control" name="fullname"
-                                                id="fullname" value="Rony">
+                                                id="fullname" value="Farhad Mia">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="email">Email</label>
                                             <input type="text" class="form-control" name="email" id="email"
-                                                value="rony@gmail.com" readonly required>
+                                                value="farhadmia@gmail.com" readonly required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
                                             <input type="text" class="form-control" name="phone" id="phone"
-                                                value="01454541122" required>
+                                                value="01254541122" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
