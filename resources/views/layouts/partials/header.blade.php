@@ -29,6 +29,12 @@
                              <a class="nav-link {{ request()->routeIs('contact.index') ? 'active' : '' }}"
                                  href="{{ route('contact.index') }}">Contact</a>
                          </li>
+
+                         {{-- google translator --}}
+                         <li class="nav-item me-3">
+                             <div id="google_translate_element"></div>
+                         </li>
+
                          <li class="nav-item">
                              <!-- Search Form -->
                              <form class="d-flex" action="{{ route('search') }}" method="GET">

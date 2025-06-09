@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('title', $post->meta_title ?: 'meta_title')
 @section('description', $post->meta_desc ?: 'meta_desc')
+@section('img', asset('assets/images/blog/' . $post->img) ?: 'post_img')
 @section('keywords', $post->meta_keywords ?: 'meta_keywords')
 @section('content')
     <!-- ======================= breadcrumb Start  ============================ -->

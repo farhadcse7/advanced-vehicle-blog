@@ -11,7 +11,7 @@
     <meta name="googlebot" content="index,follow">
     <meta name="author" content="rony">
     <meta name="csrf-token" content="">
-    <meta property="og:image" content="{{ asset('assets/images/' . getSiteSettings()->logo) }}">
+    <meta property="og:image" content="@yield('img', asset('assets/images/' . getSiteSettings()->logo))">
     <meta property="og:site_name" content="{{ getSiteSettings()->site_name }}">
     <meta property="og:title" content="@yield('title')">
     <meta property="og:url" content="{{ url()->current() }}">
@@ -74,7 +74,22 @@
     <script>
         {{ getSiteSettings()->footerscript }}
     </script>
+    {{-- google translator --}}
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,es,fr,de,bn',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
 
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&hl=en"></script>
+
+    {{-- google translator end --}}
 </body>
 
 </html>
